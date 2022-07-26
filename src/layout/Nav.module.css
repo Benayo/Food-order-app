@@ -1,0 +1,51 @@
+nav {
+  @apply flex justify-between items-center px-6 lg:px-[3.75rem] py-4 bg-primary fixed w-full;
+}
+
+.logo {
+  @apply font-logo text-4xl text-secondary-100;
+}
+
+.logo span {
+  @apply text-white-100;
+}
+
+.nav__link {
+  @apply hidden cursor-pointer py-4 md:flex justify-center items-center text-white-200 font-medium text-base;
+}
+
+.nav__link li {
+  @apply md:py-0 px-6 lg:px-11;
+}
+
+.nav__link--active {
+  @apply text-white-100;
+}
+
+.nav__link li:hover {
+  @apply text-white-100;
+}
+
+.nav__actions {
+  @apply hidden md:flex justify-center items-start text-base font-body text-white-100;
+}
+
+.btn {
+  @apply py-2 px-8 cursor-pointer;
+}
+
+.btn__stroke {
+  @apply  rounded-3xl  border;
+}
+
+.btn__full {
+  @apply rounded-3xl  bg-tertiary-100 ml-4;
+}
+
+.btn__full:hover {
+  @apply bg-tertiary-200;
+}
+
+.menu {
+  @apply h-6 w-6  md:hidden cursor-pointer text-white-100;
+}
