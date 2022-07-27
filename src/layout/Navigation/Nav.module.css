@@ -35,7 +35,11 @@ nav {
 }
 
 .btn__stroke {
-  @apply  rounded-3xl  border;
+  @apply text-white-200 rounded-3xl  border border-gray-200;
+}
+
+.btn__stroke:hover {
+  @apply border border-white-100 text-white-100;
 }
 
 .btn__full {
