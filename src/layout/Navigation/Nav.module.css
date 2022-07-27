@@ -3,7 +3,7 @@ nav {
 }
 
 .logo {
-  @apply font-logo text-4xl text-secondary-100;
+  @apply font-logo text-3xl lg:text-4xl text-secondary-100;
 }
 
 .logo span {
@@ -15,7 +15,7 @@ nav {
 }
 
 .nav__link li {
-  @apply md:py-0 px-6 lg:px-11;
+  @apply md:py-0 px-4 lg:px-11;
 }
 
 .nav__link--active {
@@ -31,7 +31,7 @@ nav {
 }
 
 .btn {
-  @apply py-2 px-8 cursor-pointer;
+  @apply py-2 px-6  lg:py-2 lg:px-8 cursor-pointer;
 }
 
 .btn__stroke {

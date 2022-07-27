@@ -6,7 +6,7 @@ module.exports = {
       fontFamily: {
         body: ["Poppins"],
         logo: ["Spicy Rice"],
-        main: ["Playfair Display SC"],
+        main: ["Playfair Display"],
       },
 
       colors: {
@@ -22,6 +22,10 @@ module.exports = {
           100: "#ffffff",
           200: "rgba(247, 247, 247, 0.75)",
         },
+      },
+      backgroundImage: {
+        "cover-pic":
+          "linear-gradient(to right, rgba(0, 0, 0),45%, transparent),url('/public/img/Hero.jpeg')",
       },
     },
   },
