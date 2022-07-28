@@ -23,9 +23,14 @@ module.exports = {
           200: "rgba(247, 247, 247, 0.75)",
         },
       },
+      boxShadow: {
+        "3xl": "0px 4px 4px rgba(0, 0, 0, 0.25)",
+        "2xl": "0px 2px 2px rgba(0, 0, 0, 0.25)",
+      },
       backgroundImage: {
         "cover-pic":
-          "linear-gradient(to right, rgba(0, 0, 0),45%, transparent),url('/public/img/Hero.jpeg')",
+          "linear-gradient(to right, rgba(0, 0, 0),45%, transparent),url('/public/Hero.jpeg')",
+        "jellof-rice": "url('/public/Hero.jpeg')",
       },
     },
   },

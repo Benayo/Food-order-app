@@ -6,6 +6,7 @@ import Nav from "../layout/Navigation/Nav";
 import SideNav from "../layout/Navigation/SideNav";
 
 import Hero from "../sections/Hero";
+import PopularMeals from "../sections/PopularMeals";
 
 const Homepage = () => {
   const [showNavBar, setShowNavBar] = useState(false);
@@ -25,6 +26,7 @@ const Homepage = () => {
     <div>
       <Nav onClick={toggleOpenNavigationHandler} />
       <Hero />
+      <PopularMeals />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 nav {
-  @apply flex justify-between items-center px-6 lg:px-[3.75rem] py-4 bg-primary fixed w-full;
+  @apply z-20 flex justify-between items-center px-6 lg:px-[3.75rem] py-4 bg-primary fixed w-full;
 }
 
 .logo {
