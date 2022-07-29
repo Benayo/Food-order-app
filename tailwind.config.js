@@ -7,6 +7,7 @@ module.exports = {
         body: ["Poppins"],
         logo: ["Spicy Rice"],
         main: ["Playfair Display"],
+        contact: ["Dosis"],
       },
 
       colors: {
@@ -30,7 +31,7 @@ module.exports = {
       backgroundImage: {
         "cover-pic":
           "linear-gradient(to right, rgba(0, 0, 0),45%, transparent),url('/public/Hero.jpeg')",
-        profile: "url('/public/profile.png')",
+        profile: "url('/public/profile.jpeg')",
         "jellof-rice": "url('/public/jellof-rice.png')",
         "ofada-rice": "url('/public/rice-moin-moin.jpeg')",
         "pounded-yam": "url('/public/pounded-yam.jpeg')",

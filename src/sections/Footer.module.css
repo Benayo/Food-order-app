@@ -1,0 +1,6 @@
+input {
+  @apply px-0 w-full h-12 p-2 appearance-none placeholder:px-2  rounded-md z-10 border-none py-2  mb-6  outline-none;
+}
+textarea {
+  @apply w-full placeholder:px-2  font-body  appearance-none rounded-md border-none py-2 px-0 mb-6 outline-none;
+}

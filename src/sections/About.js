@@ -6,7 +6,7 @@ const About = () => {
   return (
     <div className={classes.container}>
       <div className={classes["text__main"]}>About us</div>
-      <div className={classes['about__grid']}>
+      <div className={classes["about__grid"]}>
         <div className={classes["about__text"]}>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -29,7 +29,7 @@ const About = () => {
           </p>
         </div>
         <div className={classes.img}>
-          <img src="profile.png" alt="profile" />
+          <img src="profile.jpeg" alt="profile" />
         </div>
       </div>
     </div>
