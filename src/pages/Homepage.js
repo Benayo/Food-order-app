@@ -9,6 +9,7 @@ import Hero from "../sections/Hero";
 import PopularMeals from "../sections/PopularMeals";
 import About from "../sections/About";
 import Footer from "../sections/Footer";
+import Copyright from "../sections/Copyright";
 
 const Homepage = () => {
   const [showNavBar, setShowNavBar] = useState(false);
@@ -31,6 +32,7 @@ const Homepage = () => {
       <PopularMeals />
       <About />
       <Footer />
+      <Copyright />
     </div>
   );
 };

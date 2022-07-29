@@ -4,9 +4,9 @@ import classes from "./Footer.module.css";
 
 const Footer = () => {
   return (
-    <div className="pt-[3.75rem] md:pt-[6.75rem] px-[3.75rem]">
+    <div className="pt-[3.75rem] md:pt-[6.75rem] pb-[1rem] md:pb-[3.75rem]  px-4 xl:px-[3.75rem]">
       <div className="flex flex-col justify-center items-center">
-        <div className=" flex items-center justify-center  font-main text-3xl md:text-5xl font-bold mb-2  lg:mb-8">
+        <div className=" flex items-center justify-center  font-main text-3xl md:text-5xl font-bold mb-6  lg:mb-8">
           Contact us
         </div>
         <div className="text-xs font-normal lg:text-sm leading-6 lg:leading-8">
@@ -17,8 +17,8 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="grid  md:grid-cols-2 my-2 gap-y-[2rem] gap-x-[6.625rem]   justify-center mt-7">
-        <div className="flex flex-col justify-center items-start px-4 xl:px-[6.75rem] pt-8">
+      <div className="grid  md:grid-cols-2 my-2 gap-y-[2rem] gap-x-[0rem]  xl:gap-x-[6.625rem]   justify-center mt-7">
+        <div className="flex flex-col  order-2 md:order-1  justify-center items-start px-4 xl:px-[6.75rem] pt-8">
           <div className="flex mb-8">
             <div className="mr-12">
               <svg
@@ -86,8 +86,8 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="bg-primary p-14   rounded-lg">
-          <div className="flex justify-center items-center font-main text-3xl md:text-5xl font-bold mb-1 md:mb-6 xl:mb-14 text-white-100">
+        <div className="  order-1 md:order-2 bg-primary p-4 xl:p-10   rounded-lg">
+          <div className="flex justify-center items-center font-main text-2xl xl:text-5xl font-bold mb-6 md:mb-10 xl:mb-14 text-white-100">
             Send Message
           </div>
           <form
