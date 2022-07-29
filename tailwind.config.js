@@ -30,7 +30,14 @@ module.exports = {
       backgroundImage: {
         "cover-pic":
           "linear-gradient(to right, rgba(0, 0, 0),45%, transparent),url('/public/Hero.jpeg')",
-        "jellof-rice": "url('/public/Hero.jpeg')",
+        "jellof-rice": "url('/public/jellof-rice.png')",
+        "ofada-rice": "url('/public/rice-moin-moin.jpeg')",
+        "pounded-yam": "url('/public/pounded-yam.jpeg')",
+        porridge: "url('/public/porridge.jpeg')",
+        "ewa-agoyin": "url('/public/ewa-agoyin-nigerian-food.jpeg')",
+        "amala-ewedu": "url('/public/Amala-and-Ewedu.webp')",
+
+        "eba-efo": "url('/public/efo-riro-alternative-ingredients.jpeg')",
       },
     },
   },

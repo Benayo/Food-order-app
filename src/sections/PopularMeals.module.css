@@ -1,4 +1,46 @@
-  
-  
-  
-  
+.container {
+  @apply pt-[3rem] px-4 xl:px-[6.75rem];
+}
+
+.text__main {
+  @apply flex items-center justify-center  font-main text-3xl md:text-5xl font-bold mb-1 md:mb-6 xl:mb-14;
+}
+
+.grid__container {
+  @apply grid grid-cols-8 gap-y-1 md:gap-y-0 gap-4 md:gap-11 md:grid-rows-2;
+}
+
+.meal__container {
+  @apply border-4 border-white-100 shadow-3xl mt-10  bg-cover bg-top w-auto h-[10rem] md:h-[12rem] lg:h-[14.4rem] relative;
+}
+
+.meal--1 {
+  @apply bg-jellof-rice col-start-1 col-span-4  md:col-start-1 md:col-span-2;
+}
+.meal--2 {
+  @apply bg-ofada-rice col-start-5 col-span-4 md:col-start-3 md:col-span-2;
+}
+
+.meal--3 {
+  @apply bg-pounded-yam col-start-1 col-span-4;
+}
+
+.meal--4 {
+  @apply bg-porridge col-start-5 col-span-4  md:col-start-7 md:col-span-2;
+}
+
+.meal--5 {
+  @apply bg-ewa-agoyin col-start-1 col-span-4   md:col-start-2 md:col-span-2;
+}
+
+.meal--6 {
+  @apply bg-amala-ewedu col-start-5 col-span-4 md:col-start-4 md:col-span-2;
+}
+
+.meal--7 {
+  @apply bg-eba-efo col-start-3 col-span-4 md:col-start-6 md:col-span-2;
+}
+
+.label {
+  @apply w-[60%]  2xl:w-auto flex justify-center items-center absolute bg-white-100 py-2 px-3 md:px-2.5 xl:px-6 rounded-full shadow-2xl font-logo text-xs md:text-sm lg:text-base xl:text-lg bottom-[-10%] left-[50%] -translate-x-2/4;
+}
