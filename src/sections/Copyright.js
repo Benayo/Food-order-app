@@ -6,7 +6,7 @@ const Copyright = () => {
       <div className="text-white-100 text-base">
         copyright2022@BenjaminOdeleye
       </div>
-      <div className="flex">
+      <div className="flex items-center justify-center">
         <div className=" bg-facebook bg-cover h-8 w-8 mr-4 md:mx-12"></div>
         <div className=" bg-whatsapp bg-cover h-10 w-10  mx-4  md:mx-12"></div>
         <div className=" bg-instagram bg-cover h-8 w-8  mx-4 md:mx-12"></div>
