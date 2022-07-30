@@ -4,12 +4,10 @@ import classes from "./Footer.module.css";
 
 const Footer = () => {
   return (
-    <div className="pt-[3.75rem] md:pt-[6.75rem] pb-[1rem] md:pb-[3.75rem]  px-4 xl:px-[3.75rem]">
-      <div className="flex flex-col justify-center items-center">
-        <div className=" flex items-center justify-center  font-main text-3xl md:text-5xl font-bold mb-6  lg:mb-8">
-          Contact us
-        </div>
-        <div className="text-xs font-normal lg:text-sm leading-6 lg:leading-8">
+    <div className={classes.container}>
+      <div className={classes["text__container"]}>
+        <div className={classes["text__main"]}>Contact us</div>
+        <div className={classes["text__sub"]}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam. Duis aute irure dolor in reprehenderit in voluptate
@@ -17,9 +15,9 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="grid  md:grid-cols-2 my-2 gap-y-[2rem] gap-x-[0rem]  xl:gap-x-[6.625rem]   justify-center mt-7">
-        <div className="flex flex-col  order-2 md:order-1  justify-center items-start px-4 xl:px-[6.75rem] pt-8">
-          <div className="flex mb-8">
+      <div className={classes["grid__container"]}>
+        <div className={classes["contact__container"]}>
+          <div className={classes["contact__items"]}>
             <div className="mr-12">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -34,16 +32,14 @@ const Footer = () => {
                 />
               </svg>
             </div>
-            <div className="flex flex-col  justify-center">
-              <div className="text-primary mb-4 text-2xl font-semibold font-contact">
-                Address
-              </div>
-              <div className="flex justify-center items-end flex-col font-normal ">
-                420/B Lorem ipsum <div className="">dolor sit amet,</div>
+            <div className={classes["contact__flex__box"]}>
+              <div className={classes["contact__main__text"]}>Address</div>
+              <div className={classes["contact__sub__text"]}>
+                420/B Lorem ipsum <div>dolor sit amet,</div>
               </div>
             </div>
           </div>
-          <div className="flex mb-8">
+          <div className={classes["contact__items"]}>
             <div className="mr-12">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -55,16 +51,14 @@ const Footer = () => {
                 <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
               </svg>
             </div>
-            <div className="flex flex-col  justify-center">
-              <div className="text-primary mb-4 text-2xl font-semibold font-contact">
-                Phone Number
-              </div>
-              <div className="flex justify-center items-end flex-col font-normal ">
+            <div className={classes["contact__flex__box"]}>
+              <div className={classes["contact__main__text"]}>Phone Number</div>
+              <div className={classes["contact__sub__text"]}>
                 +234-818-343-7774
               </div>
             </div>
           </div>{" "}
-          <div className="flex mb-8">
+          <div className={classes["contact__items"]}>
             <div className="mr-12">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -76,18 +70,14 @@ const Footer = () => {
                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
               </svg>
             </div>
-            <div className="flex flex-col  justify-center">
-              <div className="text-primary mb-3 text-2xl font-semibold font-contact">
-                Email
-              </div>
-              <div className="flex justify-center items-end flex-col font-normal ">
-                Benjaminodeleye1@gmail.com
-              </div>
+            <div className={classes["contact__flex__box"]}>
+              <div className={classes["contact__main__text"]}>Email</div>
+              <div>Benjaminodeleye1@gmail.com</div>
             </div>
           </div>
         </div>
-        <div className="  order-1 md:order-2 bg-primary p-4 xl:p-10   rounded-lg">
-          <div className="flex justify-center items-center font-main text-2xl xl:text-5xl font-bold mb-6 md:mb-10 xl:mb-14 text-white-100">
+        <div className={classes['message__container']}>
+          <div className={classes['message__text__main']}>
             Send Message
           </div>
           <form

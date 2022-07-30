@@ -23,5 +23,5 @@
 }
 
 .btn {
-  @apply w-fit mt-8 bg-primary  py-2 px-6     lg:py-3 lg:px-10   cursor-pointer  text-base  md:text-xl font-body rounded-3xl shadow-md;
+  @apply w-fit mt-8 bg-primary  py-2 px-6     lg:py-3 lg:px-10   cursor-pointer  text-base  md:text-xl font-body rounded-3xl shadow-md hover:-translate-y-0.5 transform;
 }

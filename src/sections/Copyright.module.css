@@ -1,0 +1,31 @@
+.container {
+  @apply grid  md:grid-cols-2 my-2 gap-y-[2rem] gap-x-[0rem]  xl:gap-x-[6.625rem]   justify-center items-center mt-7 px-4 xl:px-[6.75rem] py-[1.75rem] md:py-[3rem] bg-primary;
+}
+
+.text {
+  @apply text-white-100 text-base;
+}
+
+.icon__container {
+  @apply flex items-center justify-center;
+}
+
+.icon__item {
+  @apply bg-cover h-8 w-8  mr-10  md:mr-16;
+}
+
+.facebook {
+  @apply bg-facebook;
+}
+
+.whatsapp {
+  @apply bg-whatsapp h-10 w-10;
+}
+
+.instagram {
+  @apply bg-instagram;
+}
+
+.twitter {
+  @apply bg-twitter;
+}
