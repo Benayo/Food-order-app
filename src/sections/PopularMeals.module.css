@@ -14,6 +14,10 @@
   @apply border-4 border-white-100 shadow-3xl mt-10  bg-cover bg-top w-auto h-[10rem] md:h-[12rem] lg:h-[14.4rem] relative;
 }
 
+.meal__container:hover {
+  @apply shadow-4xl;
+}
+
 .meal--1 {
   @apply bg-jellof-rice col-start-1 col-span-4  md:col-start-1 md:col-span-2;
 }

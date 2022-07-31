@@ -4,7 +4,7 @@ import classes from "./Footer.module.css";
 
 const Footer = () => {
   return (
-    <div className={classes.container}>
+    <div id="contact" className={classes.container}>
       <div className={classes["text__container"]}>
         <div className={classes["text__main"]}>Contact us</div>
         <div className={classes["text__sub"]}>
@@ -32,12 +32,17 @@ const Footer = () => {
                 />
               </svg>
             </div>
-            <div className={classes["contact__flex__box"]}>
+            <a
+              href="http://maps.google.com/?q=1200 Pennsylvania Ave SE, Washington, District of Columbia, 20003"
+              target="_blank"
+              rel="noreferrer"
+              className={classes["contact__flex__box"]}
+            >
               <div className={classes["contact__main__text"]}>Address</div>
               <div className={classes["contact__sub__text"]}>
                 420/B Lorem ipsum <div>dolor sit amet,</div>
               </div>
-            </div>
+            </a>
           </div>
           <div className={classes["contact__items"]}>
             <div className="mr-12">
@@ -51,13 +56,18 @@ const Footer = () => {
                 <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
               </svg>
             </div>
-            <div className={classes["contact__flex__box"]}>
+            <a
+              href="tel:+234-818-343-7774"
+              target="_blank"
+              rel="noreferrer"
+              className={classes["contact__flex__box"]}
+            >
               <div className={classes["contact__main__text"]}>Phone Number</div>
               <div className={classes["contact__sub__text"]}>
                 +234-818-343-7774
               </div>
-            </div>
-          </div>{" "}
+            </a>
+          </div>
           <div className={classes["contact__items"]}>
             <div className="mr-12">
               <svg
@@ -70,16 +80,19 @@ const Footer = () => {
                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
               </svg>
             </div>
-            <div className={classes["contact__flex__box"]}>
+            <a
+              rel="noreferrer"
+              target="_blank"
+              href="mailto:Benjaminodeleye1@gmail.com?subject=feedback"
+              className={classes["contact__flex__box"]}
+            >
               <div className={classes["contact__main__text"]}>Email</div>
               <div>Benjaminodeleye1@gmail.com</div>
-            </div>
+            </a>
           </div>
         </div>
-        <div className={classes['message__container']}>
-          <div className={classes['message__text__main']}>
-            Send Message
-          </div>
+        <div className={classes["message__container"]}>
+          <div className={classes["message__text__main"]}>Send Message</div>
           <form
             target="_blank"
             action="https://formspree.io/f/mdobrgwe"

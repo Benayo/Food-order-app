@@ -1,0 +1,19 @@
+nav {
+  @apply z-20 flex justify-between items-center px-6 lg:px-[3.75rem] py-4 bg-primary w-full;
+}
+
+.logo {
+  @apply cursor-pointer font-logo text-3xl lg:text-4xl text-secondary-100;
+}
+
+.logo span {
+  @apply text-white-100;
+}
+
+.btn {
+  @apply py-2 px-6  lg:py-2 lg:px-8 cursor-pointer  rounded-3xl  bg-tertiary-100 ml-4 text-white-100;
+}
+
+.btn:hover {
+  @apply bg-tertiary-200;
+}

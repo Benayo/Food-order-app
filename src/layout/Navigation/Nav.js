@@ -1,27 +1,45 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { HashLink as NavLink } from "react-router-hash-link";
 
 import classes from "./Nav.module.css";
 
 const Nav = (props) => {
   return (
     <nav>
-      <div className={classes.logo}>
+      <Link to="/" smooth className={classes.logo}>
         FOOD<span>BLOG</span>
-      </div>
+      </Link>
 
-      <ul className={classes["nav__link"]}>
-        <li className={classes["nav__link--active"]}>Home</li>
-        <li>About us</li>
-        <li>Contact</li>
+      <ul className={classes["nav__ul"]}>
+        <Link to="/">
+          <NavLink
+            to="#home"
+            smooth
+            className={`${classes["nav__link--active"]} ${classes["nav__li"]}`}
+          >
+            Home
+          </NavLink>
+        </Link>
+        <NavLink className={classes["nav__li"]} smooth to="#about">
+          About us
+        </NavLink>
+        <NavLink className={classes["nav__li"]} smooth to="#contact">
+          Contact
+        </NavLink>
       </ul>
 
       <div className={classes["nav__actions"]}>
-        <button className={`${classes.btn} ${classes["btn__stroke"]}`}>
-          Login
-        </button>
-        <button className={`${classes.btn} ${classes["btn__full"]}`}>
-          Sign up
-        </button>
+        <Link to="/login">
+          <button className={`${classes.btn} ${classes["btn__stroke"]}`}>
+            Login
+          </button>
+        </Link>
+        <Link to="/sign-in">
+          <button className={`${classes.btn} ${classes["btn__full"]}`}>
+            Sign up
+          </button>
+        </Link>
       </div>
 
       <svg

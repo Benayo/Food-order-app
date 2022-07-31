@@ -4,7 +4,7 @@ import classes from "./Hero.module.css";
 
 const Hero = () => {
   return (
-    <div className={classes.container}>
+    <div id="home" className={classes.container}>
       <div className={classes["hero__content"]}>
         <h1 className={classes["text__main"]}>
           Delicious

@@ -11,7 +11,7 @@ import About from "../sections/About";
 import Footer from "../sections/Footer";
 import Copyright from "../sections/Copyright";
 
-const Homepage = () => {
+const Homepage = (props) => {
   const [showNavBar, setShowNavBar] = useState(false);
 
   const toggleOpenNavigationHandler = () => {

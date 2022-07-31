@@ -1,4 +1,4 @@
-// import { HashLink as Link } from "react-router-hash-link";
+import { HashLink as NavLink } from "react-router-hash-link";
 
 import classes from "./SideNav.module.css";
 
@@ -6,14 +6,20 @@ const SideNav = (props) => {
   return (
     <div className={classes["container"]}>
       <div className={classes["logo_cancel_nav"]}>
-        <div className={classes.logo}>
+        <NavLink
+          to="#home"
+          smooth
+          onClick={props.onCancel}
+          className={classes.logo}
+        >
           FOOD<span>BLOG</span>
-        </div>
+        </NavLink>
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className={classes.cancel}
             onClick={props.onCancel}
+            smooth
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -28,9 +34,30 @@ const SideNav = (props) => {
         </div>
       </div>
       <ul className={classes["nav__list"]}>
-        <li>Home</li>
-        <li>About</li>
-        <li>Contact</li>
+        <NavLink
+          to="#home"
+          className={classes["nav__li"]}
+          smooth
+          onClick={props.onCancel}
+        >
+          Home
+        </NavLink>
+        <NavLink
+          to="#about"
+          className={classes["nav__li"]}
+          smooth
+          onClick={props.onCancel}
+        >
+          About
+        </NavLink>
+        <NavLink
+          to="#contact"
+          className={classes["nav__li"]}
+          smooth
+          onClick={props.onCancel}
+        >
+          Contact
+        </NavLink>
       </ul>
       <button className=" w-full text-white-100  p-2 my-4 bg-primary rounded-3xl">
         Login

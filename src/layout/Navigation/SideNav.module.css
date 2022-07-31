@@ -22,6 +22,8 @@
   @apply flex flex-col justify-center items-center;
 }
 
-.nav__list li {
+.nav__li {
   @apply p-6 text-base;
 }
+
+

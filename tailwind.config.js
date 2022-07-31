@@ -26,6 +26,7 @@ module.exports = {
       },
       boxShadow: {
         "3xl": "0px 4px 4px rgba(0, 0, 0, 0.25)",
+        "4xl": "0px 8px 8px rgba(0, 0, 0, 0.3)",
         "2xl": "0px 2px 2px rgba(0, 0, 0, 0.25)",
       },
       backgroundImage: {

@@ -3,18 +3,18 @@ nav {
 }
 
 .logo {
-  @apply font-logo text-3xl lg:text-4xl text-secondary-100;
+  @apply cursor-pointer font-logo text-3xl lg:text-4xl text-secondary-100;
 }
 
 .logo span {
   @apply text-white-100;
 }
 
-.nav__link {
+.nav__ul {
   @apply hidden cursor-pointer py-4 md:flex justify-center items-center text-white-200 font-medium text-base;
 }
 
-.nav__link li {
+.nav__li {
   @apply md:py-0 px-4 lg:px-11;
 }
 
@@ -22,7 +22,7 @@ nav {
   @apply text-white-100;
 }
 
-.nav__link li:hover {
+.nav__li:hover {
   @apply text-white-100;
 }
 
