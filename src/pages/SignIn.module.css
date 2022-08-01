@@ -1,0 +1,35 @@
+.container {
+  @apply h-screen  px-[10%]  md:px-[20%] xl:px-[32%] flex flex-col justify-center;
+}
+
+.text__main {
+  @apply font-main text-3xl md:text-5xl font-bold mb-4;
+}
+
+.text__sub {
+  @apply text-xs font-normal font-body lg:text-sm leading-6 lg:leading-8 text-gray-500;
+}
+
+form {
+  @apply mt-4;
+}
+
+input {
+  @apply w-full bg-gray-100;
+}
+
+.forget_password {
+  @apply text-primary underline text-xs font-normal lg:text-sm leading-6 font-body mb-6;
+}
+
+.terms {
+  @apply text-gray-500 text-xs font-normal leading-6 font-body;
+}
+
+.terms span {
+  @apply text-primary;
+}
+
+.btn {
+  @apply mt-4 bg-primary py-3 text-white-100 rounded-md;
+}
