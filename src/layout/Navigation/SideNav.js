@@ -61,9 +61,7 @@ const SideNav = (props) => {
         </NavLink>
       </ul>
       <Link to="/login">
-        <button className=" w-full text-white-100  p-2 my-4 bg-primary rounded-md">
-          Login
-        </button>
+        <button className={classes.btn}>Login</button>
       </Link>
     </div>
   );

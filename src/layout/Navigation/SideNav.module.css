@@ -26,4 +26,6 @@
   @apply p-6 text-base;
 }
 
-
+.btn {
+  @apply w-full text-white-100  p-2 my-4 bg-primary rounded-md;
+}

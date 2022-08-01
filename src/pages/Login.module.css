@@ -1,5 +1,5 @@
 .container {
-  @apply h-screen  px-[10%]  md:px-[20%] xl:px-[32%] flex flex-col justify-center;
+  @apply h-screen lg:pt-[15%]  px-[10%]  md:px-[20%] xl:px-[32%] flex flex-col justify-center;
 }
 
 .text__main {
