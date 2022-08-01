@@ -7,7 +7,7 @@ const Login = () => {
     <div>
       <LoginNav />
 
-      <div className="h-screen px-[32%] flex flex-col justify-center ">
+      <div className="h-screen  px-[10%] md:px-[32%] flex flex-col justify-center ">
         <div className="font-main text-3xl md:text-5xl font-bold mb-1 md:mb-6">
           Welcome Back
         </div>
