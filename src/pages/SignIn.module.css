@@ -19,7 +19,7 @@ input {
 }
 
 .forget_password {
-  @apply text-primary underline text-xs font-normal lg:text-sm leading-6 font-body mb-6;
+  @apply text-primary cursor-pointer underline text-xs font-normal lg:text-sm leading-6 font-body mb-6;
 }
 
 .terms {
@@ -27,7 +27,7 @@ input {
 }
 
 .terms span {
-  @apply text-primary;
+  @apply cursor-pointer text-primary;
 }
 
 .btn {

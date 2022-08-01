@@ -4,7 +4,7 @@ import classes from "./Copyright.module.css";
 const Copyright = () => {
   return (
     <div className={classes.container}>
-      <div className={classes.text}>copyright2022@BenjaminOdeleye</div>
+      <div className={classes.text}>copyright2022@benjaminodeleye</div>
       <div className={classes["icon__container"]}>
         <div
           target="_blank"

@@ -43,11 +43,11 @@ nav {
 }
 
 .btn__full {
-  @apply rounded-md  bg-tertiary-100 ml-4;
+  @apply rounded-md  bg-tertiary-200 ml-4;
 }
 
 .btn__full:hover {
-  @apply bg-tertiary-200;
+  @apply bg-tertiary-100;
 }
 
 .menu {
