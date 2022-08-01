@@ -11,7 +11,7 @@ nav {
 }
 
 .btn {
-  @apply py-2 px-6  lg:py-2 lg:px-8 cursor-pointer  rounded-3xl  bg-tertiary-100 ml-4 text-white-100;
+  @apply py-2 px-6  lg:py-2 lg:px-8 cursor-pointer  rounded-md  bg-tertiary-100 ml-4 text-white-100;
 }
 
 .btn:hover {

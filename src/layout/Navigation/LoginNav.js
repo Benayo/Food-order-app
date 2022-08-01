@@ -10,7 +10,9 @@ const LoginNav = () => {
         FOOD<span>BLOG</span>
       </Link>
 
-      <button className={classes.btn}>Sign up</button>
+      <Link to="/sign-in">
+        <button className={classes.btn}>Sign up</button>
+      </Link>
     </nav>
   );
 };

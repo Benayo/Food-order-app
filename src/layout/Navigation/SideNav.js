@@ -1,4 +1,5 @@
 import { HashLink as NavLink } from "react-router-hash-link";
+import { Link } from "react-router-dom";
 
 import classes from "./SideNav.module.css";
 
@@ -59,9 +60,11 @@ const SideNav = (props) => {
           Contact
         </NavLink>
       </ul>
-      <button className=" w-full text-white-100  p-2 my-4 bg-primary rounded-3xl">
-        Login
-      </button>
+      <Link to="/login">
+        <button className=" w-full text-white-100  p-2 my-4 bg-primary rounded-md">
+          Login
+        </button>
+      </Link>
     </div>
   );
 };

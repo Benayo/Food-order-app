@@ -35,7 +35,7 @@ nav {
 }
 
 .btn__stroke {
-  @apply text-white-200 rounded-3xl  border border-gray-200;
+  @apply text-white-200 rounded-md  border border-gray-200;
 }
 
 .btn__stroke:hover {
@@ -43,7 +43,7 @@ nav {
 }
 
 .btn__full {
-  @apply rounded-3xl  bg-tertiary-100 ml-4;
+  @apply rounded-md  bg-tertiary-100 ml-4;
 }
 
 .btn__full:hover {
