@@ -1,19 +1,18 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef} from "react";
 
 import SignInNav from "../layout/Navigation/SignInNav";
 import classes from "./SignIn.module.css";
-import AuthContext from "../../store/auth-context";
+// import AuthContext from "../../store/auth-context";
 
 const SignIn = () => {
   const [isLoading, setIsLoading] = useState(false);
-
   const firstnameInputRef = useRef();
   const lastnameInputRef = useRef();
   const phoneInputRef = useRef();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
-  const authCtx = useContext(AuthContext);
+  // const authCtx = useContext(AuthContext);
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -56,7 +55,7 @@ const SignIn = () => {
         }
       })
       .then((data) => {
-        authCtx.login(data.idToken);
+        // authCtx.login(data.idToken);
       })
       .catch((err) => {
         alert(err.message);
