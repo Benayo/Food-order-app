@@ -6,7 +6,7 @@ const Copyright = () => {
     <div className={classes.container}>
       <div className={classes.text}>copyright2022@benjaminodeleye</div>
       <div className={classes["icon__container"]}>
-        <div
+        {/* <div
           target="_blank"
           rel="noopener noreferrer"
           href="https://www.github.com/benayo"
@@ -29,7 +29,7 @@ const Copyright = () => {
           rel="noopener noreferrer"
           href="https://www.github.com/benayo"
           className={`${classes["icon__item"]} ${classes.twitter}`}
-        ></div>
+        ></div> */}
       </div>
     </div>
   );

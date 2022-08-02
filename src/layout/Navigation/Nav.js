@@ -7,7 +7,7 @@ import classes from "./Nav.module.css";
 const Nav = (props) => {
   return (
     <nav>
-      <Link to="/" smooth className={classes.logo}>
+      <Link to="/" smooth="true" className={classes.logo}>
         FOOD<span>BLOG</span>
       </Link>
 
@@ -15,13 +15,13 @@ const Nav = (props) => {
         <Link to="/">
           <NavLink
             to="#home"
-            smooth
+            smooth="true"
             className={`${classes["nav__link--active"]} ${classes["nav__li"]}`}
           >
             Home
           </NavLink>
         </Link>
-        <NavLink className={classes["nav__li"]} smooth to="#about">
+        <NavLink className={classes["nav__li"]} smooth="true" to="#about">
           About us
         </NavLink>
         <NavLink className={classes["nav__li"]} smooth to="#contact">
@@ -30,12 +30,12 @@ const Nav = (props) => {
       </ul>
 
       <div className={classes["nav__actions"]}>
-        <Link to="/login">
+        <Link to="/auth/login">
           <button className={`${classes.btn} ${classes["btn__stroke"]}`}>
             Login
           </button>
         </Link>
-        <Link to="/sign-in">
+        <Link to="/auth/sign-in">
           <button className={`${classes.btn} ${classes["btn__full"]}`}>
             Sign up
           </button>

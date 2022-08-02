@@ -9,7 +9,7 @@ const SideNav = (props) => {
       <div className={classes["logo_cancel_nav"]}>
         <NavLink
           to="#home"
-          smooth
+          smooth="true"
           onClick={props.onCancel}
           className={classes.logo}
         >
@@ -20,7 +20,7 @@ const SideNav = (props) => {
             xmlns="http://www.w3.org/2000/svg"
             className={classes.cancel}
             onClick={props.onCancel}
-            smooth
+            smooth="true"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -38,7 +38,7 @@ const SideNav = (props) => {
         <NavLink
           to="#home"
           className={classes["nav__li"]}
-          smooth
+          smooth="true"
           onClick={props.onCancel}
         >
           Home
@@ -46,7 +46,7 @@ const SideNav = (props) => {
         <NavLink
           to="#about"
           className={classes["nav__li"]}
-          smooth
+          smooth="true"
           onClick={props.onCancel}
         >
           About
@@ -54,13 +54,13 @@ const SideNav = (props) => {
         <NavLink
           to="#contact"
           className={classes["nav__li"]}
-          smooth
+          smooth="true"
           onClick={props.onCancel}
         >
           Contact
         </NavLink>
       </ul>
-      <Link to="/login">
+      <Link to="/auth/login">
         <button className={classes.btn}>Login</button>
       </Link>
     </div>

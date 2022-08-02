@@ -6,11 +6,11 @@ import classes from "./LoginNav.module.css";
 const LoginNav = () => {
   return (
     <nav>
-      <Link to="/" smooth className={classes.logo}>
+      <Link to="/" smooth="true" className={classes.logo}>
         FOOD<span>BLOG</span>
       </Link>
 
-      <Link to="/sign-in">
+      <Link to="/auth/sign-in">
         <button className={classes.btn}>Sign up</button>
       </Link>
     </nav>

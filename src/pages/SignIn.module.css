@@ -31,5 +31,5 @@ input {
 }
 
 .btn {
-  @apply mt-4 bg-primary py-3 text-white-100 rounded-md;
+  @apply w-full mt-4 bg-primary py-3 text-white-100 rounded-md;
 }
