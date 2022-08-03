@@ -25,41 +25,50 @@ const Nav = (props) => {
             Home
           </NavLink>
         </Link>
-        <NavLink className={classes["nav__li"]} smooth="true" to="#about">
-          About us
-        </NavLink>
-        <NavLink className={classes["nav__li"]} smooth to="#contact">
-          Contact
-        </NavLink>
-        {isLoggedIn && (
-          <NavLink className={classes["nav__li"]} smooth to="#contact">
-            Profile
+        {!isLoggedIn &&
+        (
+          <NavLink className={classes["nav__li"]} smooth="true" to="#about">
+            About us
           </NavLink>
         )}
+        {!isLoggedIn && (
+          <NavLink className={classes["nav__li"]} smooth to="#contact">
+            Contact
+          </NavLink>
+        )}
+        {isLoggedIn && (
+          <Link className={classes["nav__li"]} to="/user-profile">
+            Profile
+          </Link>
+        )}
       </ul>
-      {!isLoggedIn && (
-        <div className={classes["nav__actions"]}>
+
+      <div className={classes["nav__actions"]}>
+        {!isLoggedIn && (
           <Link to="/auth/login">
             <button className={`${classes.btn} ${classes["btn__stroke"]}`}>
               Login
             </button>
           </Link>
+        )}
 
+        {!isLoggedIn && (
           <Link to="/auth/sign-in">
             <button className={`${classes.btn} ${classes["btn__full"]}`}>
               Sign up
             </button>
           </Link>
-        </div>
-      )}
+        )}
 
-      {isLoggedIn && (
-        <Link to="/">
-          <button className={`${classes.btn} ${classes["btn__full"]}`}>
-            Logout
-          </button>
-        </Link>
-      )}
+        {isLoggedIn && (
+          <Link to="/">
+            <button className={`${classes.btn} ${classes["btn__full"]}`}>
+              Logout
+            </button>
+          </Link>
+        )}
+      </div>
+
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className={classes.menu}

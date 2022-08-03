@@ -2,9 +2,12 @@ import React, { useState, useRef, useContext } from "react";
 
 import classes from "./SignIn.module.css";
 import AuthContext from "../store/auth-context";
+import SignInNav from "../layout/Navigation/SignInNav";
 
 const SignIn = () => {
   const authCtx = useContext(AuthContext);
+
+  const isLoggedIn = authCtx.isLoggedIn;
 
   const [isLoading, setIsLoading] = useState(false);
   const firstnameInputRef = useRef();
@@ -59,6 +62,7 @@ const SignIn = () => {
 
   return (
     <div>
+      {!isLoggedIn && <SignInNav />}
       <div className={classes.container}>
         <div className={classes["text__main"]}>Let's get you started</div>
         <div className={classes["text__sub"]}>

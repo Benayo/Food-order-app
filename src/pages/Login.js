@@ -1,12 +1,13 @@
 import React from "react";
 import { useRef, useState, useContext } from "react";
 import AuthContext from "../store/auth-context";
-// import LoginNav from "../layout/Navigation/LoginNav";
+import LoginNav from "../layout/Navigation/LoginNav";
 import classes from "./Login.module.css";
-// import Nav from "../layout/Navigation/Nav";
 
 const Login = () => {
   const authCtx = useContext(AuthContext);
+
+  const isLoggedIn = authCtx.isLoggedIn;
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -59,7 +60,7 @@ const Login = () => {
 
   return (
     <div>
-      {/* <Nav /> */}
+      {!isLoggedIn && <LoginNav />}
 
       <div className={classes.container}>
         <div className={classes["text__main"]}>Welcome Back</div>

@@ -1,9 +1,14 @@
 import { HashLink as NavLink } from "react-router-hash-link";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 
 import classes from "./SideNav.module.css";
+import AuthContext from "../../store/auth-context";
 
 const SideNav = (props) => {
+  const authCtx = useContext(AuthContext);
+
+  const isLoggedIn = authCtx.isLoggedIn;
   return (
     <div className={classes["container"]}>
       <div className={classes["logo_cancel_nav"]}>
@@ -60,9 +65,16 @@ const SideNav = (props) => {
           Contact
         </NavLink>
       </ul>
-      <Link to="/auth/login">
-        <button className={classes.btn}>Login</button>
-      </Link>
+      {!isLoggedIn && (
+        <Link to="/auth/login">
+          <button className={classes.btn}>Login</button>
+        </Link>
+      )}
+      {isLoggedIn && (
+        <Link to="/">
+          <button className={classes.btn}>Logout</button>
+        </Link>
+      )}
     </div>
   );
 };
