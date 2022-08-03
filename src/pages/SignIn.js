@@ -1,10 +1,11 @@
-import React, { useState, useRef} from "react";
+import React, { useState, useRef, useContext } from "react";
 
-import SignInNav from "../layout/Navigation/SignInNav";
 import classes from "./SignIn.module.css";
-// import AuthContext from "../../store/auth-context";
+import AuthContext from "../store/auth-context";
 
 const SignIn = () => {
+  const authCtx = useContext(AuthContext);
+
   const [isLoading, setIsLoading] = useState(false);
   const firstnameInputRef = useRef();
   const lastnameInputRef = useRef();
@@ -12,16 +13,11 @@ const SignIn = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
-  // const authCtx = useContext(AuthContext);
-
   const submitHandler = (event) => {
     event.preventDefault();
 
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
-    const enteredFirstname = firstnameInputRef.current.value;
-    const enteredLastname = lastnameInputRef.current.value;
-    const enteredPhone = phoneInputRef.current.value;
 
     setIsLoading(true);
     fetch(
@@ -31,9 +27,6 @@ const SignIn = () => {
         body: JSON.stringify({
           email: enteredEmail,
           password: enteredPassword,
-          firstname: enteredFirstname,
-          lastname: enteredLastname,
-          phonenumber: enteredPhone,
           returnSecureToken: true,
         }),
         headers: {
@@ -44,8 +37,10 @@ const SignIn = () => {
       .then((res) => {
         setIsLoading(false);
         if (res.ok) {
+          return res.json();
         } else {
           return res.json().then((data) => {
+            console.log(data);
             let errorMessage = "Authentication failed!";
             if (data && data.error && data.error.message) {
               errorMessage = data.error.message;
@@ -55,7 +50,7 @@ const SignIn = () => {
         }
       })
       .then((data) => {
-        // authCtx.login(data.idToken);
+        authCtx.login(data.idToken);
       })
       .catch((err) => {
         alert(err.message);
@@ -64,8 +59,6 @@ const SignIn = () => {
 
   return (
     <div>
-      <SignInNav />
-
       <div className={classes.container}>
         <div className={classes["text__main"]}>Let's get you started</div>
         <div className={classes["text__sub"]}>

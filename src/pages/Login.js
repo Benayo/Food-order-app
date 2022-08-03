@@ -1,11 +1,13 @@
 import React from "react";
-import { useRef, useState } from "react";
-
-import LoginNav from "../layout/Navigation/LoginNav";
+import { useRef, useState, useContext } from "react";
+import AuthContext from "../store/auth-context";
+// import LoginNav from "../layout/Navigation/LoginNav";
 import classes from "./Login.module.css";
-
+// import Nav from "../layout/Navigation/Nav";
 
 const Login = () => {
+  const authCtx = useContext(AuthContext);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const emailInputRef = useRef();
@@ -48,7 +50,7 @@ const Login = () => {
         }
       })
       .then((data) => {
-        console.log(data);
+        authCtx.login(data.idToken);
       })
       .catch((err) => {
         alert(err.message);
@@ -57,7 +59,7 @@ const Login = () => {
 
   return (
     <div>
-      <LoginNav />
+      {/* <Nav /> */}
 
       <div className={classes.container}>
         <div className={classes["text__main"]}>Welcome Back</div>

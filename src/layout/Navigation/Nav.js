@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { HashLink as NavLink } from "react-router-hash-link";
+import AuthContext from "../../store/auth-context";
 
 import classes from "./Nav.module.css";
 
 const Nav = (props) => {
+  const authCtx = useContext(AuthContext);
+
+  const isLoggedIn = authCtx.isLoggedIn;
   return (
     <nav>
       <Link to="/" smooth="true" className={classes.logo}>
@@ -27,21 +31,35 @@ const Nav = (props) => {
         <NavLink className={classes["nav__li"]} smooth to="#contact">
           Contact
         </NavLink>
+        {isLoggedIn && (
+          <NavLink className={classes["nav__li"]} smooth to="#contact">
+            Profile
+          </NavLink>
+        )}
       </ul>
+      {!isLoggedIn && (
+        <div className={classes["nav__actions"]}>
+          <Link to="/auth/login">
+            <button className={`${classes.btn} ${classes["btn__stroke"]}`}>
+              Login
+            </button>
+          </Link>
 
-      <div className={classes["nav__actions"]}>
-        <Link to="/auth/login">
-          <button className={`${classes.btn} ${classes["btn__stroke"]}`}>
-            Login
-          </button>
-        </Link>
-        <Link to="/auth/sign-in">
+          <Link to="/auth/sign-in">
+            <button className={`${classes.btn} ${classes["btn__full"]}`}>
+              Sign up
+            </button>
+          </Link>
+        </div>
+      )}
+
+      {isLoggedIn && (
+        <Link to="/">
           <button className={`${classes.btn} ${classes["btn__full"]}`}>
-            Sign up
+            Logout
           </button>
         </Link>
-      </div>
-
+      )}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className={classes.menu}
