@@ -11,7 +11,7 @@ nav {
 }
 
 .nav__ul {
-  @apply cursor-pointer  md:flex justify-center items-center text-white-200 font-medium text-base;
+  @apply cursor-pointer  flex justify-center items-center text-white-200 font-medium text-base;
 }
 
 .nav__li {
