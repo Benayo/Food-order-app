@@ -1,16 +1,20 @@
-import React from "react";
-import { useRef, useState, useContext } from "react";
-import AuthContext from "../store/auth-context";
-import LoginNav from "../layout/Navigation/LoginNav";
-import classes from "./Login.module.css";
+import React, { useState, useRef, useContext } from "react";
+import { useHistory } from "react-router-dom";
 
-const Login = () => {
+import classes from "./SignIn.module.css";
+import AuthContext from "../../store/auth-context";
+import SignInNav from "../../layout/Navigation/SignInNav";
+
+const SignIn = () => {
+  const history = useHistory();
   const authCtx = useContext(AuthContext);
 
   const isLoggedIn = authCtx.isLoggedIn;
 
   const [isLoading, setIsLoading] = useState(false);
-
+  const firstnameInputRef = useRef();
+  const lastnameInputRef = useRef();
+  const phoneInputRef = useRef();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
@@ -22,7 +26,7 @@ const Login = () => {
 
     setIsLoading(true);
     fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDXFa7ElAN-91B8g1G1Ebc3NtWHwxHj3gY",
+      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDXFa7ElAN-91B8g1G1Ebc3NtWHwxHj3gY",
       {
         method: "POST",
         body: JSON.stringify({
@@ -41,17 +45,21 @@ const Login = () => {
           return res.json();
         } else {
           return res.json().then((data) => {
+            console.log(data);
             let errorMessage = "Authentication failed!";
             if (data && data.error && data.error.message) {
               errorMessage = data.error.message;
             }
-
             throw new Error(errorMessage);
           });
         }
       })
       .then((data) => {
-        authCtx.login(data.idToken);
+        const expirationTime = new Date(
+          new Date().getTime() + +data.expiresIn * 1000
+        );
+        authCtx.login(data.idToken, expirationTime.toISOString());
+        history.replace("/");
       })
       .catch((err) => {
         alert(err.message);
@@ -60,14 +68,27 @@ const Login = () => {
 
   return (
     <div>
-      {!isLoggedIn && <LoginNav />}
-
+      {!isLoggedIn && <SignInNav />}
       <div className={classes.container}>
-        <div className={classes["text__main"]}>Welcome Back</div>
+        <div className={classes["text__main"]}>Let's get you started</div>
         <div className={classes["text__sub"]}>
           To continue, please provide your credentials below.
         </div>
         <form onSubmit={submitHandler}>
+          <input
+            type="text"
+            name="text"
+            required
+            placeholder="First Name"
+            ref={firstnameInputRef}
+          />
+          <input
+            type="text"
+            name="text"
+            required
+            placeholder="Last Name"
+            ref={lastnameInputRef}
+          />
           <input
             type="email"
             name="text"
@@ -76,10 +97,25 @@ const Login = () => {
             ref={emailInputRef}
           />
           <input
+            type="numeric"
+            name="numeric"
+            required
+            placeholder="Phone Number"
+            ref={phoneInputRef}
+          />
+          <input
             type="password"
             name="password"
             required
             placeholder="Password"
+            ref={passwordInputRef}
+          />
+
+          <input
+            type="password"
+            name="password"
+            required
+            placeholder="Verify Password"
             ref={passwordInputRef}
           />
 
@@ -98,4 +134,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignIn;

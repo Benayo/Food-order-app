@@ -1,10 +1,11 @@
 import Homepage from "./pages/Homepage";
-import Login from "./pages/Login";
-import SignIn from "./pages/SignIn";
-import UserProfile from "./pages/UserProfile";
+import Login from "./pages/auth/Login";
+import SignIn from "./pages/auth/SignIn";
+import UserProfile from "./pages/profile/UserProfile";
 
-import { Routes, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { useContext } from "react";
+
 import AuthContext from "./store/auth-context";
 
 const App = () => {
@@ -12,12 +13,28 @@ const App = () => {
   const isLoggedIn = authCtx.isLoggedIn;
   return (
     <div>
-      <Routes>
-        {!isLoggedIn && <Route path="/" exact element={<Homepage />} />}
-        {!isLoggedIn && <Route path="/auth/login" element={<Login />} />}
-        {!isLoggedIn && <Route path="/auth/sign-in" element={<SignIn />} />}
-        {isLoggedIn && <Route path="/user-profile" element={<UserProfile />} />}
-      </Routes>
+      <Switch>
+        <Route path="/" exact>
+          <Homepage />
+        </Route>
+        {!isLoggedIn && (
+          <Route path="/auth/login">
+            <Login />
+          </Route>
+        )}
+        {!isLoggedIn && (
+          <Route path="/auth/sign-in">
+            <SignIn />
+          </Route>
+        )}
+        <Route path="/user-profile">
+          {isLoggedIn && <UserProfile />}
+          {!isLoggedIn && <Redirect to="/auth/login" />}
+        </Route>
+        <Route path="*">
+          <Redirect to="/" />
+        </Route>
+      </Switch>
     </div>
   );
 };

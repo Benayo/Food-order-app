@@ -1,8 +1,10 @@
 import { useContext, useRef } from "react";
+import { useHistory } from "react-router-dom";
 import classes from "./ChangePassword.module.css";
 import AuthContext from "../store/auth-context";
 
 const ChangePassword = () => {
+  const history = useHistory();
   const authCtx = useContext(AuthContext);
 
   const newPasswordInputRef = useRef();
@@ -25,7 +27,9 @@ const ChangePassword = () => {
           "Content-Type": "application/json",
         },
       }
-    ).then((res) => {});
+    ).then((res) => {
+      history.replace("/");
+    });
   };
 
   return (
@@ -36,6 +40,7 @@ const ChangePassword = () => {
           type="password"
           id="new-password"
           minLength="7"
+          required
           ref={newPasswordInputRef}
         />
       </div>
