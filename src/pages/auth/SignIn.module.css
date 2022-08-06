@@ -10,12 +10,8 @@
   @apply text-xs font-normal font-body lg:text-sm leading-6 lg:leading-8 text-gray-500;
 }
 
-form {
-  @apply mt-4;
-}
-
 input {
-  @apply w-full bg-gray-100;
+  @apply w-full bg-gray-100 block w-[100%];
 }
 
 .forget_password {
@@ -32,4 +28,8 @@ input {
 
 .btn {
   @apply w-full mt-4 bg-primary py-3 text-white-100 rounded-md;
+}
+
+.error-text {
+  @apply text-[#b40e0e] text-xs;
 }

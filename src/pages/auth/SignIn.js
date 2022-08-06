@@ -12,15 +12,28 @@ const SignIn = () => {
   const isLoggedIn = authCtx.isLoggedIn;
 
   const [isLoading, setIsLoading] = useState(false);
+  const [enteredName, setEnteredName] = useState("");
+  const [enteredNameIsValid, setEnteredNameIsValid] = useState(false);
+
   const firstnameInputRef = useRef();
   const lastnameInputRef = useRef();
   const phoneInputRef = useRef();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
+  const nameChangeHandler = (event) => {
+    setEnteredName(event.target.value);
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
 
+    if (enteredName.trim() === "") {
+      setEnteredNameIsValid(false);
+      return;
+    }
+
+    setEnteredNameIsValid(true);
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
@@ -78,10 +91,15 @@ const SignIn = () => {
           <input
             type="text"
             name="text"
-            required
             placeholder="First Name"
             ref={firstnameInputRef}
+            value={enteredName}
+            onChange={nameChangeHandler}
           />
+          {!enteredNameIsValid && (
+            <p className={classes["error-text"]}>Name must not be empty</p>
+          )}
+
           <input
             type="text"
             name="text"

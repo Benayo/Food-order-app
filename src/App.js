@@ -29,7 +29,7 @@ const App = () => {
         )}
         <Route path="/user-profile">
           {isLoggedIn && <UserProfile />}
-          {!isLoggedIn && <Login />}
+          {!isLoggedIn && <Redirect to="/auth/login" />}
         </Route>
         <Route path="*">
           <Redirect to="/" />
