@@ -8,26 +8,34 @@ import SignInNav from "../../layout/Navigation/SignInNav";
 const SignIn = () => {
   const history = useHistory();
   const authCtx = useContext(AuthContext);
-
   const isLoggedIn = authCtx.isLoggedIn;
 
   const [isLoading, setIsLoading] = useState(false);
   const [enteredName, setEnteredName] = useState("");
   const [enteredNameIsValid, setEnteredNameIsValid] = useState(false);
+  const [enteredNameTouched, setEnteredNameTouched] = useState(false);
 
-  const firstnameInputRef = useRef();
-  const lastnameInputRef = useRef();
-  const phoneInputRef = useRef();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
   const nameChangeHandler = (event) => {
     setEnteredName(event.target.value);
+    if (event.target.value.trim() !== "") {
+      setEnteredNameIsValid(true);
+    }
+  };
+
+  const nameInputBlurHandler = () => {
+    setEnteredNameTouched(true);
+    if (enteredName.trim() === "") {
+      setEnteredNameIsValid(false);
+    }
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
 
+    setEnteredNameTouched(true);
     if (enteredName.trim() === "") {
       setEnteredNameIsValid(false);
       return;
@@ -79,6 +87,8 @@ const SignIn = () => {
       });
   };
 
+  const nameInputIsInValid = !enteredNameIsValid && enteredNameTouched;
+
   return (
     <div>
       {!isLoggedIn && <SignInNav />}
@@ -88,55 +98,50 @@ const SignIn = () => {
           To continue, please provide your credentials below.
         </div>
         <form onSubmit={submitHandler}>
-          <input
-            type="text"
-            name="text"
-            placeholder="First Name"
-            ref={firstnameInputRef}
-            value={enteredName}
-            onChange={nameChangeHandler}
-          />
-          {!enteredNameIsValid && (
-            <p className={classes["error-text"]}>Name must not be empty</p>
-          )}
+          <div className={classes["input__control"]}>
+            <input
+              className={classes[nameInputIsInValid ? "invalid" : "input"]}
+              type="text"
+              name="text"
+              placeholder="First Name"
+              value={enteredName}
+              onChange={nameChangeHandler}
+              onBlur={nameInputBlurHandler}
+            />
+            {nameInputIsInValid && (
+              <p className={classes["error-text"]}>Name must not be empty</p>
+            )}
+          </div>
 
-          <input
-            type="text"
-            name="text"
-            required
-            placeholder="Last Name"
-            ref={lastnameInputRef}
-          />
-          <input
-            type="email"
-            name="text"
-            required
-            placeholder="Email Address"
-            ref={emailInputRef}
-          />
-          <input
-            type="numeric"
-            name="numeric"
-            required
-            placeholder="Phone Number"
-            ref={phoneInputRef}
-          />
-          <input
-            type="password"
-            name="password"
-            required
-            placeholder="Password"
-            ref={passwordInputRef}
-          />
-
-          <input
-            type="password"
-            name="password"
-            required
-            placeholder="Verify Password"
-            ref={passwordInputRef}
-          />
-
+          <div className={classes["input__control"]}>
+            <input type="text" name="text" placeholder="Last Name" />
+          </div>
+          <div className={classes["input__control"]}>
+            <input
+              type="email"
+              name="text"
+              placeholder="Email Address"
+              ref={emailInputRef}
+            />
+          </div>
+          <div className={classes["input__control"]}>
+            <input type="numeric" name="numeric" placeholder="Phone Number" />
+          </div>
+          <div className={classes["input__control"]}>
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              ref={passwordInputRef}
+            />
+          </div>
+          <div className={classes["input__control"]}>
+            <input
+              type="password"
+              name="password"
+              placeholder="Verify Password"
+            />
+          </div>
           <div className={classes["forget_password"]}>Forget Password?</div>
           <div className={classes.terms}>
             By continuing, I represent that I have read, understand, and fully

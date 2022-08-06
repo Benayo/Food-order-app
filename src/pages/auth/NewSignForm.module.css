@@ -1,46 +1,25 @@
-.container {
-  @apply min-h-screen pt-[25%] md:pt-[10%]  px-[10%]  md:px-[20%] xl:px-[32%] flex flex-col justify-center;
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap");
+
+* {
+  box-sizing: border-box;
 }
 
-.text__main {
-  @apply font-main text-3xl md:text-5xl font-bold mb-4;
+html {
+  font-family: "Noto Sans JP", sans-serif;
 }
 
-.text__sub {
-  @apply text-xs font-normal font-body lg:text-sm leading-6 lg:leading-8 text-gray-500;
+body {
+  margin: 0;
+  background-color: #3f3f3f;
 }
 
-.input__control {
-  @apply mb-[0.8rem];
-}
-
-input {
-  @apply bg-gray-100 mb-2;
-}
-
-.invalid {
-  border: 1px solid #b40e0e;
-  background-color: #fddddd;
-}
-
-.forget_password {
-  @apply text-primary cursor-pointer underline text-xs font-normal lg:text-sm leading-6 font-body mb-6;
-}
-
-.terms {
-  @apply text-gray-500 text-xs font-normal leading-6 font-body;
-}
-
-.terms span {
-  @apply cursor-pointer text-primary;
-}
-
-.btn {
-  @apply w-full mt-4 bg-primary py-3 text-white-100 rounded-md;
-}
-
-.error-text {
-  @apply text-red-600 text-xs;
+.app {
+  width: 90%;
+  max-width: 43rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: white;
+  margin: 3rem auto;
 }
 
 .form-control {
