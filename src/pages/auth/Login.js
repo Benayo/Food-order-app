@@ -1,5 +1,5 @@
 import React from "react";
-import { useRef, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 
 import AuthContext from "../../store/auth-context";
@@ -10,21 +10,47 @@ const Login = () => {
   const authCtx = useContext(AuthContext);
   const history = useHistory();
 
-  const isLoggedIn = authCtx.isLoggedIn;
-
   const [isLoading, setIsLoading] = useState(false);
+  const [enteredEmail, setEnteredEmail] = useState("");
+  const [enteredEmailError, setEnteredEmailError] = useState("");
 
-  const emailInputRef = useRef();
-  const passwordInputRef = useRef();
+  const [enteredPassword, setEnteredPassword] = useState("");
+  const [enteredPasswordError, setEnteredPasswordError] = useState("");
 
+  const [successMsg, setSuccessMsg] = useState("");
+
+  const emailChangeHandler = (event) => {
+    setSuccessMsg("");
+    setEnteredEmailError("");
+    setEnteredEmail(event.target.value);
+  };
+
+  const passwordChangeHandler = (event) => {
+    setSuccessMsg("");
+    setEnteredPasswordError("");
+    setEnteredPassword(event.target.value);
+  };
+
+  //submit handler
   const submitHandler = (event) => {
     event.preventDefault();
 
-   
+    if (enteredEmail !== "") {
+      const emailRegex =
+        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+      if (emailRegex.test(enteredEmail)) {
+        setEnteredEmailError("");
+      } else {
+        setEnteredEmailError("Invalid Email");
+      }
+    } else {
+      setEnteredEmailError("Email Required");
+    }
 
-    const enteredEmail = emailInputRef.current.value;
-    const enteredPassword = passwordInputRef.current.value;
-
+    if (enteredPassword !== "") {
+    } else {
+      setEnteredPasswordError("Password Required");
+    }
     setIsLoading(true);
     fetch(
       "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDXFa7ElAN-91B8g1G1Ebc3NtWHwxHj3gY",
@@ -35,6 +61,7 @@ const Login = () => {
           password: enteredPassword,
           returnSecureToken: true,
         }),
+
         headers: {
           "Content-Type": "application/json",
         },
@@ -65,32 +92,45 @@ const Login = () => {
       .catch((err) => {
         alert(err.message);
       });
+    setEnteredEmail("");
+    setEnteredPassword("");
   };
 
   return (
     <div>
-      {!isLoggedIn && <LoginNav />}
+      <LoginNav />
+      {successMsg&& <div>Congratulations</div>}
 
       <div className={classes.container}>
         <div className={classes["text__main"]}>Welcome Back</div>
         <div className={classes["text__sub"]}>
           To continue, please provide your credentials below.
         </div>
-        <form onSubmit={submitHandler}>
-          <input
-            type="email"
-            name="text"
-            required
-            placeholder="Email Address"
-            ref={emailInputRef}
-          />
-          <input
-            type="password"
-            name="password"
-            required
-            placeholder="Password"
-            ref={passwordInputRef}
-          />
+        <form autoComplete="off" onSubmit={submitHandler}>
+          <div className={classes["input__control"]}>
+            <input
+              type="email"
+              placeholder="Email Address"
+              onChange={emailChangeHandler}
+              value={enteredEmail}
+            />
+            {enteredEmailError && (
+              <div className={classes["error-text"]}>{enteredEmailError}</div>
+            )}
+          </div>
+          <div className={classes["input__control"]}>
+            <input
+              type="password"
+              placeholder="Password"
+              onChange={passwordChangeHandler}
+              value={enteredPassword}
+            />
+            {enteredPasswordError && (
+              <div className={classes["error-text"]}>
+                {enteredPasswordError}
+              </div>
+            )}
+          </div>
 
           <div className={classes["forget_password"]}>Forget Password?</div>
           <div className={classes.terms}>

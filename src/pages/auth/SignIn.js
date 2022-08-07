@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 
 import classes from "./SignIn.module.css";
@@ -8,15 +8,18 @@ import SignInNav from "../../layout/Navigation/SignInNav";
 const SignIn = () => {
   const history = useHistory();
   const authCtx = useContext(AuthContext);
-  const isLoggedIn = authCtx.isLoggedIn;
 
   const [isLoading, setIsLoading] = useState(false);
+
   const [enteredName, setEnteredName] = useState("");
   const [enteredNameIsValid, setEnteredNameIsValid] = useState(false);
   const [enteredNameTouched, setEnteredNameTouched] = useState(false);
 
-  const emailInputRef = useRef();
-  const passwordInputRef = useRef();
+  const [enteredEmail, setEnteredEmail] = useState("");
+  const [enteredEmailIsValid, setEnteredEmailIsValid] = useState(false);
+  const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
+
+  const [enteredPassword, setEnteredPassword] = useState("");
 
   const nameChangeHandler = (event) => {
     setEnteredName(event.target.value);
@@ -24,7 +27,6 @@ const SignIn = () => {
       setEnteredNameIsValid(true);
     }
   };
-
   const nameInputBlurHandler = () => {
     setEnteredNameTouched(true);
     if (enteredName.trim() === "") {
@@ -32,18 +34,40 @@ const SignIn = () => {
     }
   };
 
+  const emailChangeHandler = (event) => {
+    setEnteredEmail(event.target.value);
+    if (event.target.value.includes() === "@") {
+      setEnteredEmailIsValid(true);
+    }
+  };
+
+  const emailInputBlurHandler = (event) => {
+    setEnteredEmailTouched(true);
+    if (enteredEmail.trim() === "") {
+      setEnteredEmailIsValid(false);
+    }
+  };
+
+  const passwordChangeHandler = (event) => {
+    setEnteredPassword(event.target.value);
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
 
     setEnteredNameTouched(true);
+    setEnteredEmailTouched(true);
     if (enteredName.trim() === "") {
+      setEnteredNameIsValid(false);
+      return;
+    }
+    if (enteredEmail.includes() !== "@") {
       setEnteredNameIsValid(false);
       return;
     }
 
     setEnteredNameIsValid(true);
-    const enteredEmail = emailInputRef.current.value;
-    const enteredPassword = passwordInputRef.current.value;
+    setEnteredEmailIsValid(true);
 
     setIsLoading(true);
     fetch(
@@ -85,13 +109,17 @@ const SignIn = () => {
       .catch((err) => {
         alert(err.message);
       });
+
+    setEnteredEmail("");
   };
 
   const nameInputIsInValid = !enteredNameIsValid && enteredNameTouched;
 
+  const emailInputIsInValid = !enteredEmailIsValid && enteredEmailTouched;
+
   return (
     <div>
-      {!isLoggedIn && <SignInNav />}
+      <SignInNav />
       <div className={classes.container}>
         <div className={classes["text__main"]}>Let's get you started</div>
         <div className={classes["text__sub"]}>
@@ -102,45 +130,44 @@ const SignIn = () => {
             <input
               className={classes[nameInputIsInValid ? "invalid" : "input"]}
               type="text"
-              name="text"
-              placeholder="First Name"
+              placeholder="Full name"
               value={enteredName}
               onChange={nameChangeHandler}
               onBlur={nameInputBlurHandler}
             />
             {nameInputIsInValid && (
-              <p className={classes["error-text"]}>Name must not be empty</p>
+              <p className={classes["error-text"]}>
+                First name must not be empty
+              </p>
             )}
           </div>
 
           <div className={classes["input__control"]}>
-            <input type="text" name="text" placeholder="Last Name" />
-          </div>
-          <div className={classes["input__control"]}>
             <input
               type="email"
-              name="text"
+              className={classes[emailInputIsInValid ? "invalid" : "input"]}
               placeholder="Email Address"
-              ref={emailInputRef}
+              value={enteredEmail}
+              onChange={emailChangeHandler}
+              onBlur={emailInputBlurHandler}
             />
+            {nameInputIsInValid && (
+              <p className={classes["error-text"]}>Email must include @</p>
+            )}
           </div>
           <div className={classes["input__control"]}>
-            <input type="numeric" name="numeric" placeholder="Phone Number" />
+            <input type="number" placeholder="Phone Number" />
           </div>
           <div className={classes["input__control"]}>
             <input
               type="password"
-              name="password"
               placeholder="Password"
-              ref={passwordInputRef}
+              value={enteredPassword}
+              onChange={passwordChangeHandler}
             />
           </div>
           <div className={classes["input__control"]}>
-            <input
-              type="password"
-              name="password"
-              placeholder="Verify Password"
-            />
+            <input type="password" placeholder="Verify Password" />
           </div>
           <div className={classes["forget_password"]}>Forget Password?</div>
           <div className={classes.terms}>

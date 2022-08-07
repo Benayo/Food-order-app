@@ -14,8 +14,17 @@ form {
   @apply mt-4;
 }
 
+.input__control {
+  @apply mb-[0.8rem];
+}
+
 input {
-  @apply w-full bg-gray-100;
+  @apply bg-gray-100 mb-2;
+}
+
+.invalid {
+  border: 1px solid #b40e0e;
+  background-color: #fddddd;
 }
 
 .forget_password {
@@ -32,4 +41,8 @@ input {
 
 .btn {
   @apply mt-4 w-full bg-primary py-3 text-white-100 rounded-md;
+}
+
+.error-text {
+  @apply text-red-600 text-xs;
 }
