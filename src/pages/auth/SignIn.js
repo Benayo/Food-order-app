@@ -1,9 +1,15 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 
+import useInput from "../../hook/use-input";
+
 import classes from "./SignIn.module.css";
 import AuthContext from "../../store/auth-context";
 import SignInNav from "../../layout/Navigation/SignInNav";
+
+const isPassword = (value) => value.length > 6;
+const isEmail = (value) => value.includes("@");
+const isNotEmpty = (value) => value.trim() !== "";
 
 const SignIn = () => {
   const history = useHistory();
@@ -11,63 +17,53 @@ const SignIn = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const [enteredName, setEnteredName] = useState("");
-  const [enteredNameIsValid, setEnteredNameIsValid] = useState(false);
-  const [enteredNameTouched, setEnteredNameTouched] = useState(false);
+  const {
+    value: firstNameValue,
+    isValid: firstNameIsValid,
+    hasError: firstNameHasError,
+    valueChangeHandler: firstNameChangeHandler,
+    inputBlurHandler: firstNameBlurHandler,
+    reset: resetFirstName,
+  } = useInput(isNotEmpty);
+  const {
+    value: lastNameValue,
+    isValid: lastNameIsValid,
+    hasError: lastNameHasError,
+    valueChangeHandler: lastNameChangeHandler,
+    inputBlurHandler: lastNameBlurHandler,
+    reset: resetLastName,
+  } = useInput(isNotEmpty);
 
-  const [enteredEmail, setEnteredEmail] = useState("");
-  const [enteredEmailIsValid, setEnteredEmailIsValid] = useState(false);
-  const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
+  const {
+    value: emailValue,
+    isValid: emailIsValid,
+    hasError: emailHasError,
+    valueChangeHandler: emailChangeHandler,
+    inputBlurHandler: emailBlurHandler,
+    reset: resetEmail,
+  } = useInput(isEmail);
 
-  const [enteredPassword, setEnteredPassword] = useState("");
+  const {
+    value: passwordValue,
+    isValid: passwordIsValid,
+    hasError: passwordHasError,
+    valueChangeHandler: passwordChangeHandler,
+    inputBlurHandler: passwordBlurHandler,
+    reset: resetPassword,
+  } = useInput(isPassword);
 
-  const nameChangeHandler = (event) => {
-    setEnteredName(event.target.value);
-    if (event.target.value.trim() !== "") {
-      setEnteredNameIsValid(true);
-    }
-  };
-  const nameInputBlurHandler = () => {
-    setEnteredNameTouched(true);
-    if (enteredName.trim() === "") {
-      setEnteredNameIsValid(false);
-    }
-  };
+  let formIsValid = false;
 
-  const emailChangeHandler = (event) => {
-    setEnteredEmail(event.target.value);
-    if (event.target.value.includes() === "@") {
-      setEnteredEmailIsValid(true);
-    }
-  };
-
-  const emailInputBlurHandler = (event) => {
-    setEnteredEmailTouched(true);
-    if (enteredEmail.trim() === "") {
-      setEnteredEmailIsValid(false);
-    }
-  };
-
-  const passwordChangeHandler = (event) => {
-    setEnteredPassword(event.target.value);
-  };
+  if (firstNameIsValid && lastNameIsValid && emailIsValid && passwordIsValid) {
+    formIsValid = true;
+  }
 
   const submitHandler = (event) => {
     event.preventDefault();
 
-    setEnteredNameTouched(true);
-    setEnteredEmailTouched(true);
-    if (enteredName.trim() === "") {
-      setEnteredNameIsValid(false);
+    if (!formIsValid) {
       return;
     }
-    if (enteredEmail.includes() !== "@") {
-      setEnteredNameIsValid(false);
-      return;
-    }
-
-    setEnteredNameIsValid(true);
-    setEnteredEmailIsValid(true);
 
     setIsLoading(true);
     fetch(
@@ -75,8 +71,10 @@ const SignIn = () => {
       {
         method: "POST",
         body: JSON.stringify({
-          email: enteredEmail,
-          password: enteredPassword,
+          firstName: firstNameValue,
+          lastName: firstNameValue,
+          email: emailValue,
+          password: passwordValue,
           returnSecureToken: true,
         }),
         headers: {
@@ -90,7 +88,6 @@ const SignIn = () => {
           return res.json();
         } else {
           return res.json().then((data) => {
-            console.log(data);
             let errorMessage = "Authentication failed!";
             if (data && data.error && data.error.message) {
               errorMessage = data.error.message;
@@ -109,13 +106,11 @@ const SignIn = () => {
       .catch((err) => {
         alert(err.message);
       });
-
-    setEnteredEmail("");
+    resetFirstName();
+    resetLastName();
+    resetEmail();
+    resetPassword();
   };
-
-  const nameInputIsInValid = !enteredNameIsValid && enteredNameTouched;
-
-  const emailInputIsInValid = !enteredEmailIsValid && enteredEmailTouched;
 
   return (
     <div>
@@ -128,16 +123,31 @@ const SignIn = () => {
         <form onSubmit={submitHandler}>
           <div className={classes["input__control"]}>
             <input
-              className={classes[nameInputIsInValid ? "invalid" : "input"]}
+              className={classes[firstNameHasError ? "invalid" : "input"]}
               type="text"
-              placeholder="Full name"
-              value={enteredName}
-              onChange={nameChangeHandler}
-              onBlur={nameInputBlurHandler}
+              placeholder="First Name"
+              value={firstNameValue}
+              onChange={firstNameChangeHandler}
+              onBlur={firstNameBlurHandler}
             />
-            {nameInputIsInValid && (
+            {firstNameHasError && (
               <p className={classes["error-text"]}>
-                First name must not be empty
+                Firstname must not be empty
+              </p>
+            )}
+          </div>
+          <div className={classes["input__control"]}>
+            <input
+              className={classes[lastNameHasError ? "invalid" : "input"]}
+              type="text"
+              placeholder="Last Name"
+              value={lastNameValue}
+              onChange={lastNameChangeHandler}
+              onBlur={lastNameBlurHandler}
+            />
+            {lastNameHasError && (
+              <p className={classes["error-text"]}>
+                Lastname must not be empty
               </p>
             )}
           </div>
@@ -145,30 +155,33 @@ const SignIn = () => {
           <div className={classes["input__control"]}>
             <input
               type="email"
-              className={classes[emailInputIsInValid ? "invalid" : "input"]}
+              className={classes[emailHasError ? "invalid" : "input"]}
               placeholder="Email Address"
-              value={enteredEmail}
+              value={emailValue}
               onChange={emailChangeHandler}
-              onBlur={emailInputBlurHandler}
+              onBlur={emailBlurHandler}
             />
-            {nameInputIsInValid && (
+            {emailHasError && (
               <p className={classes["error-text"]}>Email must include @</p>
             )}
           </div>
-          <div className={classes["input__control"]}>
-            <input type="number" placeholder="Phone Number" />
-          </div>
+      
           <div className={classes["input__control"]}>
             <input
+              className={classes[emailHasError ? "invalid" : "input"]}
               type="password"
               placeholder="Password"
-              value={enteredPassword}
+              value={passwordValue}
               onChange={passwordChangeHandler}
+              onBlur={passwordBlurHandler}
             />
+            {passwordHasError && (
+              <p className={classes["error-text"]}>
+                Password must be at least six letters
+              </p>
+            )}
           </div>
-          <div className={classes["input__control"]}>
-            <input type="password" placeholder="Verify Password" />
-          </div>
+
           <div className={classes["forget_password"]}>Forget Password?</div>
           <div className={classes.terms}>
             By continuing, I represent that I have read, understand, and fully

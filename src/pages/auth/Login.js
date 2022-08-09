@@ -2,63 +2,61 @@ import React from "react";
 import { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 
+import useInput from "../../hook/use-input";
+
 import AuthContext from "../../store/auth-context";
 import LoginNav from "../../layout/Navigation/LoginNav";
 import classes from "./Login.module.css";
+
+const isPassword = (value) => value.length > 6;
+const isEmail = (value) => value.includes("@");
 
 const Login = () => {
   const authCtx = useContext(AuthContext);
   const history = useHistory();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [enteredEmail, setEnteredEmail] = useState("");
-  const [enteredEmailError, setEnteredEmailError] = useState("");
 
-  const [enteredPassword, setEnteredPassword] = useState("");
-  const [enteredPasswordError, setEnteredPasswordError] = useState("");
+  const {
+    value: emailValue,
+    isValid: emailIsValid,
+    hasError: emailHasError,
+    valueChangeHandler: emailChangeHandler,
+    inputBlurHandler: emailBlurHandler,
+    reset: resetEmail,
+  } = useInput(isEmail);
 
-  const [successMsg, setSuccessMsg] = useState("");
+  const {
+    value: passwordValue,
+    isValid: passwordIsValid,
+    hasError: passwordHasError,
+    valueChangeHandler: passwordChangeHandler,
+    inputBlurHandler: passwordBlurHandler,
+    reset: resetPassword,
+  } = useInput(isPassword);
 
-  const emailChangeHandler = (event) => {
-    setSuccessMsg("");
-    setEnteredEmailError("");
-    setEnteredEmail(event.target.value);
-  };
+  let formIsValid = false;
 
-  const passwordChangeHandler = (event) => {
-    setSuccessMsg("");
-    setEnteredPasswordError("");
-    setEnteredPassword(event.target.value);
-  };
+  if (emailIsValid && passwordIsValid) {
+    formIsValid = true;
+  }
 
   //submit handler
   const submitHandler = (event) => {
     event.preventDefault();
 
-    if (enteredEmail !== "") {
-      const emailRegex =
-        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-      if (emailRegex.test(enteredEmail)) {
-        setEnteredEmailError("");
-      } else {
-        setEnteredEmailError("Invalid Email");
-      }
-    } else {
-      setEnteredEmailError("Email Required");
+    if (!formIsValid) {
+      return;
     }
 
-    if (enteredPassword !== "") {
-    } else {
-      setEnteredPasswordError("Password Required");
-    }
     setIsLoading(true);
     fetch(
       "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDXFa7ElAN-91B8g1G1Ebc3NtWHwxHj3gY",
       {
         method: "POST",
         body: JSON.stringify({
-          email: enteredEmail,
-          password: enteredPassword,
+          email: emailValue,
+          password: passwordValue,
           returnSecureToken: true,
         }),
 
@@ -92,42 +90,49 @@ const Login = () => {
       .catch((err) => {
         alert(err.message);
       });
-    setEnteredEmail("");
-    setEnteredPassword("");
+
+    resetEmail();
+    resetPassword();
   };
 
   return (
     <div>
       <LoginNav />
-      {successMsg&& <div>Congratulations</div>}
 
       <div className={classes.container}>
         <div className={classes["text__main"]}>Welcome Back</div>
         <div className={classes["text__sub"]}>
           To continue, please provide your credentials below.
         </div>
-        <form autoComplete="off" onSubmit={submitHandler}>
-          <div className={classes["input__control"]}>
+
+        <form onSubmit={submitHandler}>
+          <div className={classes.control}>
             <input
+              className={classes[emailHasError ? "invalid" : "input"]}
               type="email"
               placeholder="Email Address"
+              value={emailValue}
               onChange={emailChangeHandler}
-              value={enteredEmail}
+              onBlur={emailBlurHandler}
             />
-            {enteredEmailError && (
-              <div className={classes["error-text"]}>{enteredEmailError}</div>
+            {emailHasError && (
+              <div className={classes["error-text"]}>
+                Please enter a valid email.
+              </div>
             )}
           </div>
-          <div className={classes["input__control"]}>
+          <div className={classes.control}>
             <input
+              className={classes[passwordHasError ? "invalid" : "input"]}
               type="password"
               placeholder="Password"
+              value={passwordValue}
               onChange={passwordChangeHandler}
-              value={enteredPassword}
+              onBlur={passwordBlurHandler}
             />
-            {enteredPasswordError && (
+            {passwordHasError && (
               <div className={classes["error-text"]}>
-                {enteredPasswordError}
+                Please enter a strong password
               </div>
             )}
           </div>
