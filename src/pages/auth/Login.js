@@ -85,7 +85,7 @@ const Login = () => {
           new Date().getTime() + +data.expiresIn * 1000
         );
         authCtx.login(data.idToken, expirationTime.toISOString());
-        history.replace("/");
+        history.replace("/dashboard");
       })
       .catch((err) => {
         alert(err.message);

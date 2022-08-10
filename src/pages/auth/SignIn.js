@@ -101,7 +101,7 @@ const SignIn = () => {
           new Date().getTime() + +data.expiresIn * 1000
         );
         authCtx.login(data.idToken, expirationTime.toISOString());
-        history.replace("/");
+        history.replace("/dashboard");
       })
       .catch((err) => {
         alert(err.message);
@@ -165,7 +165,7 @@ const SignIn = () => {
               <p className={classes["error-text"]}>Email must include @</p>
             )}
           </div>
-      
+
           <div className={classes["input__control"]}>
             <input
               className={classes[emailHasError ? "invalid" : "input"]}

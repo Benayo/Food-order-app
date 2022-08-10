@@ -1,0 +1,11 @@
+header {
+  @apply z-20 flex justify-between items-center px-6 lg:px-[3.75rem] py-4 bg-primary fixed w-full;
+}
+
+.logo {
+  @apply cursor-pointer font-logo text-3xl lg:text-4xl text-secondary-100;
+}
+
+.logo span {
+  @apply text-white-100;
+}

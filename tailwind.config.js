@@ -44,6 +44,7 @@ module.exports = {
         whatsapp: "url('/public/WhatsApp-black.png')",
         instagram: "url('/public/Instagram-black-removebg-preview.png')",
         twitter: "url('/public/twitter-black.png')",
+        "meal-item": "url('/public/African_Dishes.jpeg')",
       },
     },
   },

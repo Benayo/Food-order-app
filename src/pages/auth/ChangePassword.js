@@ -1,7 +1,7 @@
 import { useContext, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import classes from "./ChangePassword.module.css";
-import AuthContext from "../store/auth-context";
+import AuthContext from "../../store/auth-context";
 
 const ChangePassword = () => {
   const history = useHistory();
@@ -28,7 +28,7 @@ const ChangePassword = () => {
         },
       }
     ).then((res) => {
-      history.replace("/");
+      history.replace("/dashboard");
     });
   };
 
