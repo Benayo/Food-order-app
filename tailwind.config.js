@@ -28,6 +28,7 @@ module.exports = {
         "3xl": "0px 4px 4px rgba(0, 0, 0, 0.25)",
         "4xl": "0px 8px 8px rgba(0, 0, 0, 0.3)",
         "2xl": "0px 2px 2px rgba(0, 0, 0, 0.25)",
+        // "5xl": " 0 1px 18px 10px rgba(0, 0, 0, 0.25)",
       },
       backgroundImage: {
         "cover-pic":
@@ -46,7 +47,24 @@ module.exports = {
         twitter: "url('/public/twitter-black.png')",
         "meal-item": "url('/public/African_Dishes.jpeg')",
       },
+
+      keyframes: {
+        mealsAppear: {
+          from: { transform: "translateY(3rem)", opacity: 0 },
+          to: { transform: "translateY(0)", opacity: 1 },
+        },
+      },
     },
   },
   plugins: [],
 };
+
+// from {
+//   opacity: 0;
+//   transform: translateY(3rem);
+// }
+
+// to {
+//   opacity: 1;
+//   transform: translateY(0);
+// }

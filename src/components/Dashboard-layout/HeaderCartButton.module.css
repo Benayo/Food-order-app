@@ -17,7 +17,7 @@
   margin-right: 0.5rem; */
 
 .button {
-  @apply cursor-pointer font-body bg-tertiary-100 text-white-100 px-[0.75rem] py-[3rem] flex justify-around align-middle rounded-xl font-medium;
+  @apply cursor-pointer font-body bg-tertiary-100 text-white-100 px-3 py-3 flex justify-around items-center rounded-xl font-medium;
 }
 
 .button:hover,
@@ -25,27 +25,15 @@
   @apply bg-tertiary-200;
 }
 
-.icon {
-  width: 1.35rem;
-  height: 1.35rem;
-  margin-right: 0.5rem;
-}
-
-
-
 .badge {
-  background-color: #b94517;
-  padding: 0.25rem 1rem;
-  border-radius: 25px;
-  margin-left: 1rem;
-  font-weight: bold;
+  @apply bg-primary px-[1rem] py-[0.25rem] rounded-full ml-4;
 }
 
 .button:hover .badge,
 .button:active .badge {
-  background-color: #92320c;
+  @apply bg-[#92320c];
 }
-
+/* 
 .bump {
   animation: bump 300ms ease-out;
 }
@@ -66,4 +54,4 @@
   100% {
     transform: scale(1);
   }
-}
+} */

@@ -4,7 +4,7 @@ import { Fragment } from "react";
 import classes from "./Header.module.css";
 import HeaderCartButton from "./HeaderCartButton";
 
-const Header = () => {
+const Header = (props) => {
   return (
     <Fragment>
       <header className={classes.header}>
@@ -12,9 +12,9 @@ const Header = () => {
           FOOD<span>BLOG</span>
         </div>
 
-        <HeaderCartButton />
+        <HeaderCartButton onClick={props.onClick} />
       </header>
-      <div className="w-full h-[25rem] bg-meal-item bg-cover bg-no-repeat bg-top clip-your-needful-style"></div>
+      <div className={classes.img}></div>
     </Fragment>
   );
 };
