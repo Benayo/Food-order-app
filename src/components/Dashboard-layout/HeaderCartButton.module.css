@@ -33,7 +33,7 @@
 .button:active .badge {
   @apply bg-[#92320c];
 }
-/* 
+
 .bump {
   animation: bump 300ms ease-out;
 }
@@ -54,4 +54,4 @@
   100% {
     transform: scale(1);
   }
-} */
+}
