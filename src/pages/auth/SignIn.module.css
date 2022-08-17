@@ -11,7 +11,7 @@
 }
 
 .input__control {
-  @apply mb-[1.5rem];
+  @apply mb-[0.5rem];
 }
 
 input {

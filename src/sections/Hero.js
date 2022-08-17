@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import classes from "./Hero.module.css";
 
@@ -13,7 +14,9 @@ const Hero = () => {
         <div className={classes["text__sub"]}>
           African meals with <span>herbs and red pepper..!!</span>
         </div>
-        <button className={classes.btn}>View Recipes</button>
+        <Link to="/auth/login">
+          <button className={classes.btn}>View Recipes</button>
+        </Link>
       </div>
     </div>
   );

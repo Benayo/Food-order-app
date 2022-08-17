@@ -22,8 +22,6 @@ input {
   @apply bg-gray-100 mb-2;
 }
 
-
-
 .forget_password {
   @apply text-primary cursor-pointer  underline text-xs font-normal lg:text-sm leading-6 font-body mb-8;
 }
@@ -44,13 +42,15 @@ input {
   @apply text-red-600 text-xs;
 }
 
-.control {
-  @apply mb-[1.5rem];
+.error-text--1 {
+  @apply text-red-600 text-xs mb-4;
 }
 
+.control {
+  @apply mb-[1rem];
+}
 
-.invalid  {
+.invalid {
   border: 1px solid #b40e0e;
   background-color: #fddddd;
 }
-

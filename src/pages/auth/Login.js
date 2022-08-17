@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 import useInput from "../../hook/use-input";
 
@@ -16,6 +16,8 @@ const Login = () => {
   const history = useHistory();
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const [error, setError] = useState(false);
 
   const {
     value: emailValue,
@@ -88,7 +90,7 @@ const Login = () => {
         history.replace("/dashboard");
       })
       .catch((err) => {
-        alert(err.message);
+        setError(true);
       });
 
     resetEmail();
@@ -106,6 +108,11 @@ const Login = () => {
         </div>
 
         <form onSubmit={submitHandler}>
+          {error && (
+            <div className={classes["error-text--1"]}>
+              Authentication failed! Incorrect password or email.
+            </div>
+          )}
           <div className={classes.control}>
             <input
               className={classes[emailHasError ? "invalid" : "input"]}
@@ -137,7 +144,9 @@ const Login = () => {
             )}
           </div>
 
-          <div className={classes["forget_password"]}>Forget Password?</div>
+          <Link to="/forget-password">
+            <div className={classes["forget_password"]}>Forget Password?</div>
+          </Link>
           <div className={classes.terms}>
             By continuing, I represent that I have read, understand, and fully
             agree to the FOODBLOG <span>terms of service</span> and{" "}
