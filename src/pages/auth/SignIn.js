@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import useInput from "../../hook/use-input";
 
@@ -182,9 +182,6 @@ const SignIn = () => {
             )}
           </div>
 
-          <Link to="/change-password">
-            <div className={classes["forget_password"]}>Forget Password?</div>
-          </Link>
           <div className={classes.terms}>
             By continuing, I represent that I have read, understand, and fully
             agree to the FOODBLOG <span>terms of service</span> and{" "}

@@ -15,6 +15,14 @@
   padding: 0; */;
 }
 
+.meals--loading {
+  @apply text-center text-white-100;
+}
+
+
+.meals--error {
+  @apply text-center text-red-700;
+}
 /* @keyframes meals-appear {
   from {
     opacity: 0;

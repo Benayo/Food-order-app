@@ -15,9 +15,9 @@ const Login = () => {
   const authCtx = useContext(AuthContext);
   const history = useHistory();
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const [error, setError] = useState(false);
+  const [error, setError] = useState();
 
   const {
     value: emailValue,
@@ -68,7 +68,6 @@ const Login = () => {
       }
     )
       .then((res) => {
-        setIsLoading(false);
         if (res.ok) {
           return res.json();
         } else {
@@ -90,11 +89,12 @@ const Login = () => {
         history.replace("/dashboard");
       })
       .catch((err) => {
-        setError(true);
+        setError(err);
       });
 
     resetEmail();
     resetPassword();
+    setIsLoading(false);
   };
 
   return (
@@ -110,7 +110,7 @@ const Login = () => {
         <form onSubmit={submitHandler}>
           {error && (
             <div className={classes["error-text--1"]}>
-              Authentication failed! Incorrect password or email.
+              Authentication failed!
             </div>
           )}
           <div className={classes.control}>
@@ -153,7 +153,7 @@ const Login = () => {
             <span>privacy policy</span> .
           </div>
           <button className={classes.btn}>
-            {!isLoading ? "Continue" : "Loading..."}
+            {isLoading ? "Continue" : "Loading..."}
           </button>
         </form>
       </div>
