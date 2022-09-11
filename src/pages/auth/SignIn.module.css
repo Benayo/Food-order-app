@@ -42,3 +42,7 @@ input {
 .error-text {
   @apply text-red-600 text-xs;
 }
+
+.http-error-text {
+  @apply mt-4 text-red-600 text-xs;
+}

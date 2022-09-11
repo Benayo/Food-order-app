@@ -153,7 +153,7 @@ const Login = () => {
             <span>privacy policy</span> .
           </div>
           <button className={classes.btn}>
-            {isLoading ? "Continue" : "Loading..."}
+            {isLoading  ? "Continue" : "Loading..."}
           </button>
         </form>
       </div>

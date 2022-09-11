@@ -9,6 +9,8 @@ const SideNav = (props) => {
   const authCtx = useContext(AuthContext);
 
   const isLoggedIn = authCtx.isLoggedIn;
+
+  
   return (
     <div className={classes["container"]}>
       <div className={classes["logo_cancel_nav"]}>
