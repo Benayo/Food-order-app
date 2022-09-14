@@ -1,10 +1,11 @@
+import axios from "axios";
 import React from "react";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 
 import useInput from "../../hook/use-input";
 
-import AuthContext from "../../store/auth-context";
+// import AuthContext from "../../store/auth-context";
 import LoginNav from "../../layout/Navigation/LoginNav";
 import classes from "./Login.module.css";
 
@@ -12,7 +13,7 @@ const isPassword = (value) => value.length > 6;
 const isEmail = (value) => value.includes("@");
 
 const Login = () => {
-  const authCtx = useContext(AuthContext);
+  // const authCtx = useContext(AuthContext);
   const history = useHistory();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -52,45 +53,76 @@ const Login = () => {
     }
 
     setIsLoading(true);
-    fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDXFa7ElAN-91B8g1G1Ebc3NtWHwxHj3gY",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          email: emailValue,
-          password: passwordValue,
-          returnSecureToken: true,
-        }),
 
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    axios
+      .post("https://foodblogafrika.herokuapp.com/api/v1/auth/login", {
+        email: emailValue,
+        password: passwordValue,
+      })
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return res.json().then((data) => {
-            let errorMessage = "Authentication failed!";
-            if (data && data.error && data.error.message) {
-              errorMessage = data.error.message;
-            }
+        localStorage.setItem("userData", JSON.stringify(res.data.user));
+        localStorage.setItem("access", JSON.stringify(res.data.access_token));
 
-            throw new Error(errorMessage);
-          });
-        }
-      })
-      .then((data) => {
-        const expirationTime = new Date(
-          new Date().getTime() + +data.expiresIn * 1000
-        );
-        authCtx.login(data.idToken, expirationTime.toISOString());
+        // const tokenData = JSON.parse(localStorage.getItem("userData"));
+        // console.log(tokenData);
+        setIsLoading(false);
         history.replace("/dashboard");
+        return res.json();
       })
-      .catch((err) => {
-        setError(err);
+      // .then((data) => {
+      // const expirationTime = new Date(
+      //   new Date().getTime() + +data.expiresIn * 1000
+      // );
+      // authCtx.login(data.idToken, expirationTime.toISOString());
+
+      // })
+      .catch((error) => {
+        setIsLoading(false);
+        if (error.response) {
+          setError(error.response.data.msg);
+        }
+        // setError(error.response.data.msg);
       });
+
+    // fetch(
+    //   "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDXFa7ElAN-91B8g1G1Ebc3NtWHwxHj3gY",
+    //   {
+    //     method: "POST",
+    //     body: JSON.stringify({
+    //       email: emailValue,
+    //       password: passwordValue,
+    //       returnSecureToken: true,
+    //     }),
+
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   }
+    // )
+    //   .then((res) => {
+    //     if (res.ok) {
+    //       return res.json();
+    //     } else {
+    //       return res.json().then((data) => {
+    //         let errorMessage = "Authentication failed!";
+    //         if (data && data.error && data.error.message) {
+    //           errorMessage = data.error.message;
+    //         }
+
+    //         throw new Error(errorMessage);
+    //       });
+    //     }
+    //   })
+    //   .then((data) => {
+    //     const expirationTime = new Date(
+    //       new Date().getTime() + +data.expiresIn * 1000
+    //     );
+    //     authCtx.login(data.idToken, expirationTime.toISOString());
+    //     history.replace("/dashboard");
+    //   })
+    //   .catch((err) => {
+    //     setError(err);
+    //   });
 
     resetEmail();
     resetPassword();
@@ -153,7 +185,7 @@ const Login = () => {
             <span>privacy policy</span> .
           </div>
           <button className={classes.btn}>
-            {isLoading  ? "Continue" : "Loading..."}
+            {isLoading ? "Continue" : "Loading..."}
           </button>
         </form>
       </div>

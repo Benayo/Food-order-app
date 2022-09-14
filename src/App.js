@@ -4,6 +4,7 @@ import SignIn from "./pages/auth/SignIn";
 import UserProfile from "./pages/profile/UserProfile";
 import Dashboard from "./pages/FoodDashBoard/Dashboard";
 import ChangePassword from "./pages/auth/ChangePassword";
+import EmailVerified from "./pages/auth/EmailVerified";
 
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useContext } from "react";
@@ -12,6 +13,7 @@ import AuthContext from "./store/auth-context";
 
 const App = () => {
   const authCtx = useContext(AuthContext);
+
   const isLoggedIn = authCtx.isLoggedIn;
   return (
     <div>
@@ -43,7 +45,9 @@ const App = () => {
             <ChangePassword />
           </Route>
         )}
-
+        <Route path="/verify">
+          <EmailVerified />
+        </Route>
         <Route path="*">
           <Redirect to="/" />
         </Route>
