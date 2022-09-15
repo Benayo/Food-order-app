@@ -1,11 +1,11 @@
 import axios from "axios";
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
 
 import useInput from "../../hook/use-input";
 
-// import AuthContext from "../../store/auth-context";
+import AuthContext from "../../store/auth-context";
 import LoginNav from "../../layout/Navigation/LoginNav";
 import classes from "./Login.module.css";
 
@@ -13,7 +13,7 @@ const isPassword = (value) => value.length > 6;
 const isEmail = (value) => value.includes("@");
 
 const Login = () => {
-  // const authCtx = useContext(AuthContext);
+  const authCtx = useContext(AuthContext);
   const history = useHistory();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -60,12 +60,14 @@ const Login = () => {
         password: passwordValue,
       })
       .then((res) => {
-        localStorage.setItem("userData", JSON.stringify(res.data.user));
-        localStorage.setItem("access", JSON.stringify(res.data.access_token));
+        // localStorage.setItem("userData", JSON.stringify(res.data.user));
+        // localStorage.setItem("access", JSON.stringify(res.data.access_token));
 
+        // const accessToken = JSON.parse(localStorage.getItem("access"));
         // const tokenData = JSON.parse(localStorage.getItem("userData"));
         // console.log(tokenData);
         setIsLoading(false);
+        authCtx.login(res.data.access_token);
         history.replace("/dashboard");
         return res.json();
       })
