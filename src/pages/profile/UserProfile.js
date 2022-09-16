@@ -1,4 +1,4 @@
-import ChangePassword from "../auth/ChangePassword";
+import ChangePassword from "../auth/forgotPassword/ChangePassword";
 import classes from "./UserProfile.module.css";
 import DashboardNav from "../../layout/DashBoardNav/DashboardNav";
 

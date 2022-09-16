@@ -3,8 +3,9 @@ import Login from "./pages/auth/Login";
 import SignIn from "./pages/auth/SignIn";
 import UserProfile from "./pages/profile/UserProfile";
 import Dashboard from "./pages/FoodDashBoard/Dashboard";
-import ChangePassword from "./pages/auth/ChangePassword";
+import ChangePassword from "./pages/auth/forgotPassword/ChangePassword";
 import EmailVerified from "./pages/auth/EmailVerified";
+import SetNewPassword from "./pages/auth/forgotPassword/SetNewPassword";
 
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useContext } from "react";
@@ -37,6 +38,8 @@ const App = () => {
         <Route path="/forget-password">
           {!isLoggedIn && <ChangePassword />}
         </Route>
+
+        <Route path="/resetpassword">{!isLoggedIn && <SetNewPassword />}</Route>
 
         <Route path="/verify">{!isLoggedIn && <EmailVerified />}</Route>
 

@@ -2,9 +2,9 @@ import React from "react";
 
 // import { Link } from "react-router-dom";
 
-import Modal from "../../components/UI/Modal";
+import Modal from "../../../components/UI/Modal";
 
-const VerifyEmail = (props) => {
+const VerifiedChangePassword = (props) => {
   return (
     <Modal onCancel={props.onCancel}>
       <div className="flex flex-col justify-center items-center">
@@ -13,7 +13,7 @@ const VerifyEmail = (props) => {
         </div>
         <h1 className="text-xl md:text-2xl mb-4">Check your mail</h1>
         <div className=" mb-12  text-sm  md:text-base text-gray-600 text-center">
-          Please follow the link and verify your account
+          We have sent a password recovery instructions to your email
         </div>
         <div className=" mt-8  mb-2 text-sm  md:text-base text-gray-600 text-center">
           Didn’t receive the email? Check your spam or
@@ -29,4 +29,4 @@ const VerifyEmail = (props) => {
   );
 };
 
-export default VerifyEmail;
+export default VerifiedChangePassword;

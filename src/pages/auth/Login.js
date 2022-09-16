@@ -16,9 +16,11 @@ const Login = () => {
   const authCtx = useContext(AuthContext);
   const history = useHistory();
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [error, setError] = useState();
+  const [httpError, setHttpError] = useState("");
+
+  const [error, setError] = useState(false);
 
   const {
     value: emailValue,
@@ -44,7 +46,6 @@ const Login = () => {
     formIsValid = true;
   }
 
-  //submit handler
   const submitHandler = (event) => {
     event.preventDefault();
 
@@ -62,78 +63,23 @@ const Login = () => {
       .then((res) => {
         localStorage.setItem("userData", JSON.stringify(res.data.user));
 
-        // localStorage.setItem(
-        //   "expirationTime",
-        //   JSON.stringify(res.data.user.expirationTime)
-        // );
         localStorage.setItem("access", JSON.stringify(res.data.access_token));
 
-        // const accessToken = JSON.parse(localStorage.getItem("access"));
-        // const tokenData = JSON.parse(localStorage.getItem("userData"));
-        // console.log(tokenData);
         setIsLoading(false);
         authCtx.login(res.data.access_token);
         history.replace("/dashboard");
-        return res.json();
       })
-      // .then((data) => {
-      // const expirationTime = new Date(
-      //   new Date().getTime() + +data.expiresIn * 1000
-      // );
-      // authCtx.login(data.idToken, expirationTime.toISOString());
 
-      // })
       .catch((error) => {
         setIsLoading(false);
+        setError(true);
         if (error.response) {
-          setError(error.response.data.msg);
+          setHttpError(error.response.data.msg);
         }
-        // setError(error.response.data.msg);
       });
-
-    // fetch(
-    //   "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDXFa7ElAN-91B8g1G1Ebc3NtWHwxHj3gY",
-    //   {
-    //     method: "POST",
-    //     body: JSON.stringify({
-    //       email: emailValue,
-    //       password: passwordValue,
-    //       returnSecureToken: true,
-    //     }),
-
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   }
-    // )
-    //   .then((res) => {
-    //     if (res.ok) {
-    //       return res.json();
-    //     } else {
-    //       return res.json().then((data) => {
-    //         let errorMessage = "Authentication failed!";
-    //         if (data && data.error && data.error.message) {
-    //           errorMessage = data.error.message;
-    //         }
-
-    //         throw new Error(errorMessage);
-    //       });
-    //     }
-    //   })
-    //   .then((data) => {
-    //     const expirationTime = new Date(
-    //       new Date().getTime() + +data.expiresIn * 1000
-    //     );
-    //     authCtx.login(data.idToken, expirationTime.toISOString());
-    //     history.replace("/dashboard");
-    //   })
-    //   .catch((err) => {
-    //     setError(err);
-    //   });
 
     resetEmail();
     resetPassword();
-    setIsLoading(false);
   };
 
   return (
@@ -147,11 +93,7 @@ const Login = () => {
         </div>
 
         <form onSubmit={submitHandler}>
-          {error && (
-            <div className={classes["error-text--1"]}>
-              Authentication failed!
-            </div>
-          )}
+          {error && <div className={classes["error-text--1"]}>{httpError}</div>}
           <div className={classes.control}>
             <input
               className={classes[emailHasError ? "invalid" : "input"]}
@@ -192,7 +134,7 @@ const Login = () => {
             <span>privacy policy</span> .
           </div>
           <button className={classes.btn}>
-            {isLoading ? "Continue" : "Loading..."}
+            {!isLoading ? "Continue" : "Loading..."}
           </button>
         </form>
       </div>
