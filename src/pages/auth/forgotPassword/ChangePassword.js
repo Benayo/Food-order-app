@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
-// import { useHistory } from "react-router-dom";
+
 import classes from "./ChangePassword.module.css";
-// import AuthContext from "../../store/auth-context";
+
 import VerifiedChangePassword from "./VerifiedChangePassword";
 import SignInNav from "../../../layout/Navigation/SignInNav";
 import useInput from "../../../hook/use-input";
@@ -29,10 +29,6 @@ const ChangePassword = () => {
   if (emailIsValid) {
     formIsValid = true;
   }
-
-  // const history = useHistory();
-
-  // const authCtx = useContext(AuthContext);
 
   const newEmailInputRef = useRef();
 
@@ -66,22 +62,6 @@ const ChangePassword = () => {
         }
       });
 
-    // fetch(
-    //   "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDXFa7ElAN-91B8g1G1Ebc3NtWHwxHj3gY",
-    //   {
-    //     method: "POST",
-    //     body: JSON.stringify({
-    //       // idToken: authCtx.token,
-    //       email: enteredNewEmail,
-    //       // returnSecureToken: false,
-    //     }),
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   }
-    // ).then((res) => {
-    //   history.replace("/login");
-    // });
     resetEmail();
   };
 
@@ -95,7 +75,7 @@ const ChangePassword = () => {
         <h1 className="mb-6 text-2xl md:text-4xl">Account recovery</h1>
         <div className="text-xs md:text-sm  justify-center items-center text-center mb-8">
           To help keep your account safe, FOODBLOG AFRIKA wants to make sure
-          it’s really you trying to sign in. 
+          it’s really you trying to sign in.
         </div>
 
         <form onSubmit={submitHandler} className={classes.form}>
