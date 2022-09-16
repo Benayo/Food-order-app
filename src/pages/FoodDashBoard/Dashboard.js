@@ -16,6 +16,10 @@ const Dashboard = () => {
     setCartIsShown(false);
   };
 
+  const accessToken = JSON.parse(localStorage.getItem("access"));
+
+  console.log(accessToken);
+
   return (
     <CartProvider>
       <div className="bg-[#383838] min-h-full pb-[2rem]">

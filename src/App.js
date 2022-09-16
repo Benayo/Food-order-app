@@ -21,33 +21,25 @@ const App = () => {
         <Route path="/" exact>
           <Homepage />
         </Route>
-        {!isLoggedIn && (
-          <Route path="/auth/login">
-            <Login />
-          </Route>
-        )}
-        {!isLoggedIn && (
-          <Route path="/auth/sign-in">
-            <SignIn />
-          </Route>
-        )}
+
+        <Route path="/auth/login">{!isLoggedIn && <Login />}</Route>
+
+        <Route path="/auth/sign-in">{!isLoggedIn && <SignIn />}</Route>
+
         <Route path="/user-profile">
-          {isLoggedIn && <UserProfile />}
-          {!isLoggedIn && <Redirect to="/auth/login" />}
+          {isLoggedIn ? <UserProfile /> : <Login />}
         </Route>
-        {isLoggedIn && (
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
-        )}
-        {!isLoggedIn && (
-          <Route path="/forget-password">
-            <ChangePassword />
-          </Route>
-        )}
-        <Route path="/verify">
-          <EmailVerified />
+
+        <Route path="/dashboard">
+          {isLoggedIn ? <Dashboard /> : <Login />}
         </Route>
+
+        <Route path="/forget-password">
+          {!isLoggedIn && <ChangePassword />}
+        </Route>
+
+        <Route path="/verify">{!isLoggedIn && <EmailVerified />}</Route>
+
         <Route path="*">
           <Redirect to="/" />
         </Route>

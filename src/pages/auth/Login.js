@@ -60,8 +60,13 @@ const Login = () => {
         password: passwordValue,
       })
       .then((res) => {
-        // localStorage.setItem("userData", JSON.stringify(res.data.user));
-        // localStorage.setItem("access", JSON.stringify(res.data.access_token));
+        localStorage.setItem("userData", JSON.stringify(res.data.user));
+
+        // localStorage.setItem(
+        //   "expirationTime",
+        //   JSON.stringify(res.data.user.expirationTime)
+        // );
+        localStorage.setItem("access", JSON.stringify(res.data.access_token));
 
         // const accessToken = JSON.parse(localStorage.getItem("access"));
         // const tokenData = JSON.parse(localStorage.getItem("userData"));
