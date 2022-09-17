@@ -13,9 +13,8 @@ const isPassword = (value) => value.length > 6;
 const ResetUserPassword = () => {
   const storedData = JSON.parse(localStorage.getItem("userData"));
 
-  const oldPassword = storedData.password;
+  const oldPasswordValue = storedData.password;
 
-  console.log(oldPassword);
   const queryParams = new URLSearchParams(window.location.search);
 
   const resetPasswordTokenValue = queryParams.get("resetpasswordToken");
@@ -29,15 +28,6 @@ const ResetUserPassword = () => {
   const [error, setError] = useState(false);
 
   const {
-    value: oldPasswordValue,
-    isValid: oldPasswordIsValid,
-    hasError: oldPasswordHasError,
-    valueChangeHandler: oldPasswordChangeHandler,
-    inputBlurHandler: oldPasswordBlurHandler,
-    reset: resetOldPassword,
-  } = useInput(isPassword);
-
-  const {
     value: newPasswordValue,
     isValid: newPasswordIsValid,
     hasError: newPasswordHasError,
@@ -46,12 +36,11 @@ const ResetUserPassword = () => {
     reset: resetNewPassword,
   } = useInput(isPassword);
 
-  const oldPasswordInputRef = useRef();
   const newPasswordInputRef = useRef();
 
   let formIsValid = false;
 
-  if (oldPasswordIsValid && newPasswordIsValid) {
+  if (newPasswordIsValid) {
     formIsValid = true;
   }
 
@@ -66,10 +55,8 @@ const ResetUserPassword = () => {
       return;
     }
 
-    const enteredOldPassword = oldPasswordInputRef.current.value;
+   
     const enteredNewPassword = newPasswordInputRef.current.value;
-
- 
 
     setIsLoading(true);
     axios
@@ -77,7 +64,7 @@ const ResetUserPassword = () => {
         "https://foodblogafrika.herokuapp.com/api/v1/auth/resetnewpassword",
         {
           email: emailValue,
-          oldPassword: enteredOldPassword,
+          oldPassword: oldPasswordValue,
           newPassword: enteredNewPassword,
           passwordToken: resetPasswordTokenValue,
         }
@@ -95,7 +82,6 @@ const ResetUserPassword = () => {
         }
       });
 
-    resetOldPassword();
     resetNewPassword();
 
     setIsLoading(false);
@@ -114,21 +100,6 @@ const ResetUserPassword = () => {
         {error && <p className={classes["error-text"]}>{httpError}</p>}
 
         <form className={classes.form} onSubmit={submitHandler}>
-          <div className={classes.control}>
-            <input
-              className={classes[oldPasswordHasError ? "invalid" : "input"]}
-              placeholder="Old password"
-              type="oldPassword"
-              ref={oldPasswordInputRef}
-              value={oldPasswordValue}
-              onChange={oldPasswordChangeHandler}
-              onBlur={oldPasswordBlurHandler}
-            />
-            {oldPasswordHasError && (
-              <p className={classes["error-text"]}>Old password required!</p>
-            )}
-          </div>
-
           <div className={classes.control}>
             <input
               className={classes[newPasswordHasError ? "invalid" : "input"]}

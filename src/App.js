@@ -30,10 +30,6 @@ const App = () => {
 
         <Route path="/auth/sign-in">{!isLoggedIn && <SignIn />}</Route>
 
-        {/* <Route path="/reset-user-password">
-          {isLoggedIn ? <ResetUserPassword /> : <Login />}
-        </Route> */}
-
         <Route path="/verify-email">
           {isLoggedIn ? <VerifyEmail /> : <Login />}
         </Route>
@@ -50,10 +46,6 @@ const App = () => {
         <Route path="/resetpassword">
           {isLoggedIn ? <ResetUserPassword /> : <SetNewPassword />}
         </Route>
-
-        {/* <Route path="/resetpassword">
-          {isLoggedIn && <ResetUserPassword />}
-        </Route> */}
 
         <Route path="/verify">{!isLoggedIn && <EmailVerified />}</Route>
 
