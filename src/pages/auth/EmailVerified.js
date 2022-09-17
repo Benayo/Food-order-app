@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import SignInNav from "../../layout/Navigation/SignInNav";
 
 const EmailVerified = () => {
-  const [validUrl, setValidUrl] = useState(false);
+  const [validUrl, setValidUrl] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
   const queryParams = new URLSearchParams(window.location.search);

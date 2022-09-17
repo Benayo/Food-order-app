@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Modal from "../../../components/UI/Modal";
 
-const ResetPasswordConfirmed = () => {
+const ResetPasswordConfirmed = (props) => {
   return (
     <Modal onCancel={props.onCancel}>
       <div className="flex flex-col justify-center items-center">

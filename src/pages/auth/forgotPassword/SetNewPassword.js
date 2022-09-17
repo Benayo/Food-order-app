@@ -5,13 +5,16 @@ import { useState } from "react";
 import useInput from "../../../hook/use-input";
 
 import SignInNav from "../../../layout/Navigation/SignInNav";
-import VerifiedChangePassword from "./VerifiedChangePassword";
+// import VerifiedChangePassword from "./VerifiedChangePassword";
 import classes from "./ChangePassword.module.css";
+// import EmailVerified from "../EmailVerified";
+// import ResetUserPassword from "../../profile/ResetUserPassword";
+import ResetPasswordConfirmed from "./ResetPasswordConfirmed";
 
 const isPassword = (value) => value.length > 6;
 
 const SetNewPassword = () => {
-  const [validUrl, setValidUrl] = useState(false);
+  const [validUrl, setValidUrl] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [verifyNewPassword, setVerifyNewPassword] = useState(false);
   const [error, setError] = useState(false);
@@ -32,6 +35,7 @@ const SetNewPassword = () => {
 
   const resetPasswordTokenValue = queryParams.get("resetpasswordToken");
 
+
   const newPasswordInputRef = useRef();
 
   let formIsValid = false;
@@ -39,6 +43,10 @@ const SetNewPassword = () => {
   if (passwordIsValid) {
     formIsValid = true;
   }
+
+  const toggleCloseNavigationHandler = () => {
+    setVerifyNewPassword(true);
+  };
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -75,12 +83,20 @@ const SetNewPassword = () => {
 
   return (
     <section>
-      {verifyNewPassword && <VerifiedChangePassword />}
+      {verifyNewPassword && (
+        <ResetPasswordConfirmed onCancel={toggleCloseNavigationHandler} />
+      )}
       <SignInNav />
 
-      <div className=" flex flex-col justify-center items-center  h-screen px-[10%]  md:px-[20%] xl:px-[32%]  2xl:w-[80%]">
+      {isLoading && (
+        <div className="flex items-center justify-center h-screen  ">
+          Loading...
+        </div>
+      )}
+
+      <div>
         {validUrl ? (
-          <div>
+          <div className=" flex flex-col justify-center items-center  h-screen px-[10%]  md:px-[20%] xl:px-[32%]  2xl:w-[80%]">
             {" "}
             <h1 className="mb-6 text-2xl md:text-4xl">Create new password</h1>
             <div className="text-xs md:text-sm  justify-center items-center text-center mb-8">
@@ -92,7 +108,7 @@ const SetNewPassword = () => {
                 <input
                   className={classes[passwordHasError ? "invalid" : "input"]}
                   placeholder="Kindly enter your new password here"
-                  type="text"
+                  type="password"
                   ref={newPasswordInputRef}
                   value={passwordValue}
                   onChange={passwordChangeHandler}
@@ -110,7 +126,7 @@ const SetNewPassword = () => {
             </form>
           </div>
         ) : (
-          <div>404 Not Found</div>
+          <div> 404 not Found</div>
         )}
       </div>
     </section>

@@ -13,3 +13,35 @@ header {
 .img {
   @apply w-full h-[25rem] bg-meal-item bg-cover bg-no-repeat bg-top clip-your-needful-style;
 }
+
+.nav__ul {
+  @apply cursor-pointer  flex justify-center items-center text-white-200 font-medium text-base;
+}
+
+.nav__li {
+  @apply md:py-0 px-4 lg:px-11;
+}
+
+.nav__link--active {
+  @apply text-white-100;
+}
+
+.nav__li:hover {
+  @apply text-white-100;
+}
+
+.nav__actions {
+  @apply md:flex justify-center items-start text-base font-body text-white-100;
+}
+
+.btn {
+  @apply py-2 px-6  lg:py-2 lg:px-8 cursor-pointer;
+}
+
+.btn__full {
+  @apply rounded-md  bg-tertiary-200 ml-4 text-white-100;
+}
+
+.btn__full:hover {
+  @apply bg-tertiary-100;
+}

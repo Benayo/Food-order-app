@@ -65,8 +65,16 @@ const Login = () => {
 
         localStorage.setItem("access", JSON.stringify(res.data.access_token));
 
+        const storedData = JSON.parse(localStorage.getItem("userData"));
+
+        console.log(storedData);
+
         setIsLoading(false);
+
+
         authCtx.login(res.data.access_token);
+
+        
         history.replace("/dashboard");
       })
 
