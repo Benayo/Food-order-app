@@ -11,7 +11,7 @@ import classes from "./Header.module.css";
 import HeaderCartButton from "./HeaderCartButton";
 
 const Header = (props) => {
-  const [isLoading, setIsLoading] = useState(false);
+
   const [onConfirm, setOnConfirm] = useState(false);
 
   const history = useHistory();
@@ -31,19 +31,19 @@ const Header = (props) => {
   };
 
   const changePasswordHandler = () => {
-    setIsLoading(true);
+
 
     axios
       .post("https://foodblogafrika.herokuapp.com/api/v1/auth/forgetpassword", {
         email: emailValue,
       })
       .then((res) => {
-        setIsLoading(false);
+     
         setOnConfirm(true);
       })
       .catch((error) => {
         setOnConfirm(false);
-        setIsLoading(false);
+ 
 
         if (error.response) {
           alert(error.response.data.msg);
@@ -53,9 +53,9 @@ const Header = (props) => {
 
   return (
     <Fragment>
-      {isLoading && <p>Loading...</p>}
       {onConfirm && <VerifyEmail onCancel={toggleCloseModalHandler} />}
       <header className={classes.header}>
+      
         <div className={classes.logo}>
           FOOD<span>BLOG</span>
         </div>
