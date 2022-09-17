@@ -31,23 +31,24 @@ const App = () => {
         <Route path="/auth/sign-in">{!isLoggedIn && <SignIn />}</Route>
 
         <Route path="/verify-email">
-          {isLoggedIn ? <VerifyEmail /> : <Login />}
+          {isLoggedIn ? <VerifyEmail /> : <Redirect to="/auth/login" />}
         </Route>
 
         <Route path="/dashboard">
           {isLoggedIn ? <Dashboard /> : <Redirect to="/auth/login" />}
-          {/* <Dashboard /> */}
         </Route>
 
         <Route path="/forget-password">
-          {!isLoggedIn && <ChangePassword />}
+          {!isLoggedIn ? <ChangePassword /> : <Redirect to="/auth/login" />}
         </Route>
 
         <Route path="/resetpassword">
           {isLoggedIn ? <ResetUserPassword /> : <SetNewPassword />}
         </Route>
 
-        <Route path="/verify">{!isLoggedIn && <EmailVerified />}</Route>
+        <Route path="/verify">
+          {!isLoggedIn ? <EmailVerified /> : <Redirect to="/auth/login" />}
+        </Route>
 
         <Route path="*">
           <Redirect to="/" />
