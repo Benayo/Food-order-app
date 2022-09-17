@@ -6,7 +6,6 @@ import Dashboard from "./pages/FoodDashBoard/Dashboard";
 import ChangePassword from "./pages/auth/forgotPassword/ChangePassword";
 import EmailVerified from "./pages/auth/EmailVerified";
 import SetNewPassword from "./pages/auth/forgotPassword/SetNewPassword";
-import VerifyEmail from "./pages/profile/VerifyEmail";
 
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useContext } from "react";
@@ -29,10 +28,6 @@ const App = () => {
         <Route path="/auth/login">{!isLoggedIn && <Login />}</Route>
 
         <Route path="/auth/sign-in">{!isLoggedIn && <SignIn />}</Route>
-
-        <Route path="/verify-email">
-          {isLoggedIn ? <VerifyEmail /> : <Redirect to="/auth/login" />}
-        </Route>
 
         <Route path="/dashboard">
           {isLoggedIn ? <Dashboard /> : <Redirect to="/auth/login" />}
