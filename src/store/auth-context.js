@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useCallback } from "react";
 
-let logoutTimer;
+
 
 const AuthContext = React.createContext({
   token: null,
