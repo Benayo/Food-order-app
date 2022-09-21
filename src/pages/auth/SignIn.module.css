@@ -11,11 +11,15 @@
 }
 
 .input__control {
-  @apply mb-[0.5rem];
+  @apply mb-[0.2rem];
+}
+
+.input__password {
+  @apply flex mb-2  items-center justify-end;
 }
 
 input {
-  @apply bg-gray-100 mb-2;
+  @apply bg-gray-100;
 }
 
 .invalid {
