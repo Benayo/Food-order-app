@@ -25,9 +25,13 @@ const App = () => {
           {!isLoggedIn ? <Homepage /> : <Dashboard />}
         </Route>
 
-        <Route path="/auth/login">{!isLoggedIn && <Login />}</Route>
+        <Route path="/auth/login">
+          {!isLoggedIn ? <Login /> : <Redirect to="/dashboard" />}
+        </Route>
 
-        <Route path="/auth/sign-in">{!isLoggedIn && <SignIn />}</Route>
+        <Route path="/auth/sign-in">
+          {!isLoggedIn ? <SignIn /> : <Redirect to="/dashboard" />}
+        </Route>
 
         <Route path="/dashboard">
           {isLoggedIn ? <Dashboard /> : <Redirect to="/auth/login" />}
