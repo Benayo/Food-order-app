@@ -22,6 +22,10 @@ input {
   @apply bg-gray-100;
 }
 
+textarea {
+  @apply bg-gray-100;
+}
+
 .invalid {
   border: 1px solid #b40e0e;
   background-color: #fddddd;
@@ -49,4 +53,12 @@ input {
 
 .http-error-text {
   @apply mt-4 text-red-600 text-xs;
+}
+
+.toggle--btn {
+  @apply mx-4 hover:text-primary pb-4 border-white-100  border-b-2 hover:border-primary;
+}
+
+.toggle--btn--active {
+  @apply mx-4 pb-4 hover:text-primary   border-b-2  text-primary border-primary;
 }
