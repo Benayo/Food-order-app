@@ -56,7 +56,7 @@ const Product = () => {
           </svg>
         </div>
       </div>
-      ​
+
       <div className={classes["table--container"]}>
         <div className={classes["table--container--sub--1"]}>
           <div className={classes["table--container--sub--2"]}>
@@ -98,8 +98,8 @@ const Product = () => {
                           {person.category}
                         </div>
                         {/* <div className="text-sm text-gray-500">
-                          {person.department}
-                        </div> */}
+                      {person.department}
+                    </div> */}
                       </td>
                       <td>
                         <span className={classes.active}>Active</span>
@@ -109,9 +109,7 @@ const Product = () => {
                         <button className={classes.edit}>Edit</button>
                       </td>
                       <td className={classes.actions}>
-                        <button className={classes.delete}>
-                          Delete
-                        </button>
+                        <button className={classes.delete}>Delete</button>
                       </td>
                     </tr>
                   ))}

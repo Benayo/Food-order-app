@@ -15,7 +15,7 @@ const SideBar = () => {
         </div>
 
         <div>
-          <div className={classes.menu}>
+          <Link to="/vendor-dashboard" className={classes.menu}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -30,7 +30,7 @@ const SideBar = () => {
               />
             </svg>
             <span>Dashboard</span>
-          </div>
+          </Link>
           <div className={classes.menu}>
             <svg
               xmlns="http://www.w3.org/2000/svg"

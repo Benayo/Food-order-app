@@ -337,11 +337,15 @@ const VendorSignUp = () => {
           )}
         </div>
 
+     
+
         <div className={classes["input__control"]}>
           <textarea
             className={classes[restaurantDetailsHasError ? "invalid" : "input"]}
             type="text"
             placeholder="Briefly describe your restuarant"
+            cols="20"
+            rows="10"
             value={restaurantDetailsValue}
             onChange={restaurantDetailsChangeHandler}
             onBlur={restaurantDetailsBlurHandler}

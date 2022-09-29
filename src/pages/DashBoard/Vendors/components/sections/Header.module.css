@@ -7,7 +7,7 @@
 }
 
 .dashboard-span {
-  @apply hidden  md:text-xs text-gray-500 font-light;
+  @apply text-[0.6rem] md:text-xs text-gray-500 font-light;
 }
 
 .view {

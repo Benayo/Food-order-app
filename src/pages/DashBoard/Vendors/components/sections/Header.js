@@ -22,13 +22,13 @@ const Header = (props) => {
           />
         </svg>
         <div>
-          <div className={classes.dashboard}>Dashboard</div>{" "}
-          <span className={classes["dashboard-span"]}>Here to serve you!</span>
+          <div className={classes.dashboard}>{props.title}</div>{" "}
+          <span className={classes["dashboard-span"]}>{props.title2}</span>
         </div>
       </div>
 
       <div className={classes.view}>
-        <span>View your Restaurant</span>
+        <span>{props.view}</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-4 w-4"

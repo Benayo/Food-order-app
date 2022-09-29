@@ -23,7 +23,12 @@ const Main = () => {
   }
   return (
     <main className={classes.container}>
-      <Header onClick={toggleOpenNavigationHandler} />
+      <Header
+        title="Dashboard"
+        title2="Here to serve you!"
+        view="View your restuarant"
+        onClick={toggleOpenNavigationHandler}
+      ></Header>
       <StoreInfo />
       <AddProduct />
       <Product />

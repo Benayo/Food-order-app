@@ -11,6 +11,7 @@ import SetNewPassword from "./pages/auth/forgotPassword/SetNewPassword";
 import AuthContext from "./store/auth-context";
 import UserDashboard from "./pages/DashBoard/Users/UserDashboard";
 import VendorDashboard from "./pages/DashBoard/Vendors/VendorDashboard";
+import AddProducts from "./pages/AddProducts/AddProducts";
 
 const App = () => {
   const authCtx = useContext(AuthContext);
@@ -22,7 +23,7 @@ const App = () => {
     <div>
       <Switch>
         <Route path="/" exact>
-          {!isLoggedIn ? <Homepage /> : <Redirect to='/user-dashboard' />}
+          {!isLoggedIn ? <Homepage /> : <Redirect to="/user-dashboard" />}
         </Route>
 
         <Route path="/auth/login">
@@ -39,6 +40,10 @@ const App = () => {
 
         <Route path="/vendor-dashboard">
           <VendorDashboard />
+        </Route>
+
+        <Route path="/products/create">
+          <AddProducts />
         </Route>
 
         <Route path="/forget-password">

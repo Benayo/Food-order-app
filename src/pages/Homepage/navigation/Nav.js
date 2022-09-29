@@ -38,7 +38,7 @@ const Nav = (props) => {
           </button>
         </Link>
 
-        <Link to="/auth/sign-in">
+        <Link to="/auth/sign-up">
           <button className={`${classes.btn} ${classes["btn__full"]}`}>
             Sign up
           </button>
