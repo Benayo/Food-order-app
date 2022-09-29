@@ -2,13 +2,14 @@ import React from "react";
 
 import classes from "./Header.module.css";
 
-const Header = () => {
+const Header = (props) => {
   return (
     <section className={classes.container}>
       <div className="flex justify-center items-center ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6 mr-4 md:hidden"
+          onClick={props.onClick}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
