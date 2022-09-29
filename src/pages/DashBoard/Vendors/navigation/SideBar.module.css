@@ -1,5 +1,5 @@
 .container {
-  @apply hidden w-[25%] font-body  md:flex flex-col justify-between py-4 min-h-screen   m-2 bg-white-200 rounded-md;
+  @apply hidden w-[23.5%] h-[100vh] fixed  font-body  md:flex flex-col justify-between py-4 min-h-screen   m-2 bg-white-200 rounded-md;
 }
 
 .user__logo--container {

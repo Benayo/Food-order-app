@@ -18,6 +18,7 @@
   @apply text-base md:text-xl text-gray-800;
 }
 
-.btn {
-  @apply w-fit md:w-auto rounded-md cursor-pointer text-white-100  font-normal font-body mt-2 md:mt-2  mb-6  bg-primary  lg:px-20 lg:py-4  px-8 py-3 hover:-translate-y-0.5 transform;
+
+.btn{
+    @apply w-fit md:w-auto rounded-md cursor-pointer text-white-100  font-normal font-body mt-2 md:mt-2  mb-6  bg-primary  lg:px-20 lg:py-4  px-8 py-3 hover:-translate-y-0.5 transform
 }
