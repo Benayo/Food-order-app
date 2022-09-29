@@ -1,0 +1,19 @@
+.container {
+  @apply flex justify-between items-center px-4 md:px-12 py-6  border-b border-gray-300;
+}
+
+.dashboard {
+  @apply text-base md:text-2xl font-normal cursor-default;
+}
+
+.dashboard-span {
+  @apply hidden  md:text-xs text-gray-500 font-light;
+}
+
+.view {
+  @apply flex justify-center items-center cursor-pointer text-primary   hover:text-tertiary-100;
+}
+
+.view span {
+  @apply text-sm pr-2 md:pr-4;
+}

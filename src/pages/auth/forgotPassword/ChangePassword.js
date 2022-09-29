@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import classes from "./ChangePassword.module.css";
 
 import VerifiedChangePassword from "./VerifiedChangePassword";
-import SignInNav from "../../../layout/Navigation/SignInNav";
+import SignInNav from "../SignUp/navigation/SignUpNav";
 import useInput from "../../../hook/use-input";
 import axios from "axios";
 

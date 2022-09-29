@@ -1,0 +1,59 @@
+.user__logo--container {
+  @apply mb-2 md:hidden;
+}
+
+.sub--container {
+  @apply flex mx-4 mt-4 p-2 rounded-md cursor-pointer items-center border border-red-400;
+}
+
+.user--logo {
+  @apply mr-4 px-4 py-2 bg-red-600 rounded-[5rem] text-white-100;
+}
+
+.user--text {
+  @apply font-light text-sm;
+}
+
+.info__container {
+  @apply px-4 md:px-12 py-4 md:py-6 border-b border-gray-300 flex justify-between items-center;
+}
+
+.info__container--sub {
+  @apply flex flex-col md:flex-row justify-center items-center;
+}
+
+.svg--container-1 {
+  @apply flex flex-col justify-center items-center  p-4  md:p-5 rounded-xl  md:mr-2 mb-3 bg-violet-800;
+}
+
+.svg--container-2 {
+  @apply flex flex-col justify-center items-center  p-4  md:p-5 rounded-xl  md:mr-2 mb-3 bg-rose-800;
+}
+
+.svg--container-3 {
+  @apply flex flex-col justify-center items-center  p-4  md:p-5 rounded-xl  md:mr-2 mb-3 bg-yellow-600;
+}
+
+.svg--container-4 {
+  @apply flex flex-col justify-center items-center  p-4  md:p-5 rounded-xl  md:mr-2 mb-3 bg-green-800;
+}
+
+/* .svg--container:nth-child(3) {
+  @apply ;
+} */
+
+/* .svg--container svg {
+  @apply 
+} */
+
+.text--container {
+  @apply flex flex-col  justify-center items-center xl:items-start;
+}
+
+.text {
+  @apply text-[0.75rem] text-center md:text-sm font-light text-gray-600;
+}
+
+.number {
+  @apply font-normal text-base md:text-xl;
+}

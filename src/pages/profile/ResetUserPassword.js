@@ -2,7 +2,7 @@ import classes from "./ResetUserPassword.module.css";
 
 import axios from "axios";
 
-import DashboardNav from "../../layout/DashBoardNav/DashboardNav";
+import UserNav from "../DashBoard/Users/navigation/UserNav";
 import useInput from "../../hook/use-input";
 import { useRef } from "react";
 import { useState } from "react";
@@ -55,7 +55,6 @@ const ResetUserPassword = () => {
       return;
     }
 
-   
     const enteredNewPassword = newPasswordInputRef.current.value;
 
     setIsLoading(true);
@@ -89,7 +88,7 @@ const ResetUserPassword = () => {
 
   return (
     <section>
-      <DashboardNav />
+      <UserNav />
 
       {onConfirmPassword && (
         <ConfirmPassword onCancel={toggleCloseNavigationHandler} />

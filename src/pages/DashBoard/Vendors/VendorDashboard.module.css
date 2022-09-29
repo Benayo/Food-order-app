@@ -1,0 +1,4 @@
+.container {
+  @apply md:flex md:justify-center  md:items-start w-screen bg-gray-200;
+}
+

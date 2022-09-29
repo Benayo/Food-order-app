@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import useInput from "../../../hook/use-input";
 
-import SignInNav from "../../../layout/Navigation/SignInNav";
+import SignInNav from "../SignUp/navigation/SignUpNav";
 // import VerifiedChangePassword from "./VerifiedChangePassword";
 import classes from "./ChangePassword.module.css";
 // import EmailVerified from "../EmailVerified";
