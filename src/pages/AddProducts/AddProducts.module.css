@@ -58,6 +58,18 @@ form {
   @apply mt-4 text-red-600 text-xs;
 }
 
+.header {
+  @apply flex justify-between my-8 mx-4;
+}
+
+.view {
+  @apply flex justify-center items-center cursor-pointer  text-primary   hover:text-tertiary-100;
+}
+
+.view span {
+  @apply text-sm pr-4;
+}
+
 .table--container {
   @apply flex flex-col mx-4;
 }

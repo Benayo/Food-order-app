@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import classes from "./Header.module.css";
 
@@ -27,7 +28,7 @@ const Header = (props) => {
         </div>
       </div>
 
-      <div className={classes.view}>
+      <Link to={props.to} className={classes.view}>
         <span>{props.view}</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +44,7 @@ const Header = (props) => {
             d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
           />
         </svg>
-      </div>
+      </Link>
     </section>
   );
 };
