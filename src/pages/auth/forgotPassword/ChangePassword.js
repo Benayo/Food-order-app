@@ -7,7 +7,7 @@ import SignInNav from "../SignUp/navigation/SignUpNav";
 import useInput from "../../../hook/use-input";
 import axios from "axios";
 
-const isNotEmpty = (value) => value.trim() !== "";
+const isEmail = (value) => value.includes("@");
 
 const ChangePassword = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -22,7 +22,7 @@ const ChangePassword = () => {
     valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
     reset: resetEmail,
-  } = useInput(isNotEmpty);
+  } = useInput(isEmail);
 
   let formIsValid = false;
 
@@ -74,6 +74,7 @@ const ChangePassword = () => {
       <div className=" flex flex-col justify-center items-center  h-screen px-[10%]  md:px-[20%] xl:px-[32%]  2xl:w-[80%]">
         <h1 className="mb-6 text-2xl md:text-4xl">Account recovery</h1>
         <div className="text-xs md:text-sm  justify-center items-center text-center mb-8">
+          Thank U
           To help keep your account safe, FOODBLOG AFRIKA wants to make sure
           it’s really you trying to sign in.
         </div>
