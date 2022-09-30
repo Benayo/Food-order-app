@@ -30,7 +30,7 @@ form {
 }
 
 .input {
-  @apply bg-gray-200;
+  @apply bg-gray-200 text-sm md:text-base;
 }
 
 .invalid {
@@ -130,7 +130,7 @@ form {
 }
 
 .description {
-  @apply text-sm text-gray-500;
+  @apply text-xs  text-gray-500;
 }
 
 .category {

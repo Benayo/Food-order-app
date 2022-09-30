@@ -344,7 +344,7 @@ const VendorSignUp = () => {
             className={classes[restaurantDetailsHasError ? "invalid" : "input"]}
             type="text"
             placeholder="Briefly describe your restuarant"
-            cols="20"
+            cols="30"
             rows="10"
             value={restaurantDetailsValue}
             onChange={restaurantDetailsChangeHandler}

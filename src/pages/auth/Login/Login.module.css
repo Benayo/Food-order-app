@@ -19,7 +19,7 @@ form {
 }
 
 input {
-  @apply bg-gray-100 mb-2;
+  @apply bg-gray-100 mb-2 text-sm md:text-base;
 }
 
 .input__control {
