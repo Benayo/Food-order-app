@@ -35,7 +35,7 @@ const people = [
   // More people...
 ];
 
-const AddProductTable = () => {
+const AddProductList = (props) => {
   const table = (
     <table className={classes.table}>
       <thead className="bg-gray-50 ">
@@ -56,6 +56,8 @@ const AddProductTable = () => {
       <tbody className={classes["table--body"]}>
         {people.map((person) => (
           <AddProductItem
+            onEdit={props.onEdit}
+            onDelete={props.onDelete}
             key={person.email}
             image={person.image}
             name={person.name}
@@ -104,4 +106,4 @@ const AddProductTable = () => {
   );
 };
 
-export default AddProductTable;
+export default AddProductList;

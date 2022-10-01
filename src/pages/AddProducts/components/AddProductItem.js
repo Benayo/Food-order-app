@@ -27,10 +27,14 @@ const AddProductItem = (props) => {
       </td>
       <td className={classes.price}>{props.price}</td>
       <td className={classes.actions}>
-        <button className={classes.edit}>Edit</button>
+        <button className={classes.edit} onClick={props.onEdit}>
+          Edit
+        </button>
       </td>
       <td className={classes.actions}>
-        <button className={classes.delete}>Delete</button>
+        <button onClick={props.onDelete} className={classes.delete}>
+          Delete
+        </button>
       </td>
     </tr>
   );

@@ -23,12 +23,16 @@ module.exports = {
           100: "#ffffff",
           200: "rgba(247, 247, 247, 0.75)",
         },
+
+        backdrop: {
+          100: "rgba(0, 0, 0, 0.75)",
+        },
       },
       boxShadow: {
         "3xl": "0px 4px 4px rgba(0, 0, 0, 0.25)",
         "4xl": "0px 8px 8px rgba(0, 0, 0, 0.3)",
         "2xl": "0px 2px 2px rgba(0, 0, 0, 0.25)",
-        // "5xl": " 0 1px 18px 10px rgba(0, 0, 0, 0.25)",
+        "1xl": " 0px 2px 8px rgba(0, 0, 0, 0.25)",
       },
       backgroundImage: {
         "cover-pic":
@@ -50,6 +54,13 @@ module.exports = {
 
       keyframes: {
         mealsAppear: {
+          from: { transform: "translateY(3rem)", opacity: 0 },
+          to: { transform: "translateY(0)", opacity: 1 },
+        },
+      },
+
+      keyframes: {
+        slideDown: {
           from: { transform: "translateY(3rem)", opacity: 0 },
           to: { transform: "translateY(0)", opacity: 1 },
         },
