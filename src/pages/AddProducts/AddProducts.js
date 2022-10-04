@@ -6,17 +6,19 @@ import AddProductList from "./components/AddProductList";
 import AddProductForm from "./components/AddProductForm";
 import EditProductItem from "./components/EditProductItem";
 import DeleteItem from "./components/DeleteItem";
+import Category from "./components/Category";
 
 const AddProducts = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [openDeleteItem, setOpenDeleteItem] = useState(false);
+  const [showCategoryModal, setShowCategoryModal] = useState(false);
 
   const toggleOpenModalHandler = () => {
-    setShowModal(true);
+    setShowEditModal(true);
   };
 
   const toggleCloseModalHandler = () => {
-    setShowModal(false);
+    setShowEditModal(false);
   };
 
   const toggleOpenDeleteItemHandler = () => {
@@ -27,11 +29,20 @@ const AddProducts = () => {
     setOpenDeleteItem(false);
   };
 
+  const toggleOpenCategoryHandler = () => {
+    setShowCategoryModal(true);
+  };
+
+  const toggleCloseCategoryHandler = () => {
+    setShowCategoryModal(false);
+  };
+
   return (
     <section className={classes.container}>
       <SideBar />
       {openDeleteItem && <DeleteItem onCancel={toggleCloseDeleteItemHandler} />}
-      {showModal && <EditProductItem onCancel={toggleCloseModalHandler} />}
+      {showEditModal && <EditProductItem onCancel={toggleCloseModalHandler} />}
+      {showCategoryModal && <Category onCancel={toggleCloseCategoryHandler} />}
       <div className={classes["layout-container"]}>
         <Header
           to="/vendor-dashboard"
@@ -39,7 +50,11 @@ const AddProducts = () => {
           title2=""
           view="Go to dashboard"
         ></Header>
-        <AddProductForm stroke="+Add Item" full="Upload item" />
+        <AddProductForm
+          onCategory={toggleOpenCategoryHandler}
+          stroke="+Add Item"
+          full="Upload item"
+        />
         <AddProductList
           onDelete={toggleOpenDeleteItemHandler}
           onEdit={toggleOpenModalHandler}

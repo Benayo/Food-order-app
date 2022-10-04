@@ -1,8 +1,20 @@
 import React from "react";
+import { useState } from "react";
+// import { DropDownListComponent } from "@syncfusion/ej2-react-dropdowns";
 
 import classes from "../AddProducts.module.css";
 
 const AddProductForm = (props) => {
+  const [showCategoryList, setShowCategoryList] = useState(false);
+
+  const showCategoryDropDownHandler = () => {
+    if (!showCategoryList) {
+      setShowCategoryList(true);
+      return;
+    }
+    setShowCategoryList(false);
+  };
+
   return (
     <form>
       <div className={classes["input__control"]}>
@@ -23,16 +35,68 @@ const AddProductForm = (props) => {
         {<p className={classes["error-text"]}>Food price</p>}
       </div>
 
-      <div className={classes["input__control"]}>
-        <select className="bg-gray-200 text-sm md:text-base w-full p-4  rounded-md cursor-pointer">
-          <option className="text-gray-700" selected>
-            Choose category
-          </option>
-          <option value="US">Dinner</option>
-          <option value="CA">Breakfast</option>
-          <option value="FR">Lunch</option>
-          <option value="DE">Brunch</option>
-        </select>
+      <div className="mb-[0.2rem] mx-4 lg:mx-[10rem]  xl:mx-[16rem]   cursor-pointer relative">
+        <button
+          onClick={showCategoryDropDownHandler}
+          className="h-full  w-full outline-none bg-gray-200 rounded-md px-4  py-2 flex items-center justify-between cursor-pointer"
+          type="button"
+        >
+          <label className="text-sm text-placeholder  py-1 px-1.25">
+            Select food category
+          </label>
+          {!showCategoryList ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+              />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4.5 15.75l7.5-7.5 7.5 7.5"
+              />
+            </svg>
+          )}
+        </button>
+        {showCategoryList && (
+          <div className="absolute flex flex-col justify-center items-center  bg-gray-100 w-full   rounded-md  shadow-sm">
+            <div className="pt-3 text-gray-400 text-sm">
+              No category selected
+            </div>
+            <ul className="border-t border-gray-200 w-full flex flex-col justify-center items-center my-3 ">
+              <li className="py-2 cursor-pointer">Beans</li>
+              <div className=" border-b border-gray-200 w-full"></div>
+              <li className="py-2 cursor-pointer">Rice</li>
+              <div className=" border-b border-gray-200 w-full"></div>
+            </ul>
+
+            <button
+              type="button"
+              onClick={props.onCategory}
+              className=" pb-2 text-primary cursor-pointer"
+            >
+              Create category +
+            </button>
+          </div>
+        )}
       </div>
       <div className={classes["input__control"]}>
         <label
@@ -41,12 +105,7 @@ const AddProductForm = (props) => {
         >
           Upload image
         </label>
-        <input
-          id="image"
-          className={classes["input"]}
-          type="file"
-          placeholder="Item category"
-        />
+        <input id="image" className={classes["input"]} type="file" />
       </div>
       <div className={classes["input__control"]}>
         <textarea
