@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 // import { Link } from "react-router-dom";
 
@@ -24,6 +25,13 @@ const VerifyEmail = (props) => {
             try another email address.
           </div>
         </div>
+
+        <Link
+          className="text-sm md:text-base mt-4 text-blue-800  "
+          to="/auth/login"
+        >
+          Go to Login
+        </Link>
       </div>
     </Modal>
   );

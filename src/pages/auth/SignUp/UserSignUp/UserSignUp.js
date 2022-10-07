@@ -123,7 +123,7 @@ const UserSignUp = () => {
     setIsLoading(true);
 
     axios
-      .post("https://foodblogafrika.cyclic.app/api/v1/auth/register", {
+      .post("https://foodblogafrika.herokuapp.app/api/v1/auth/register", {
         email: emailValue,
         password: passwordValue,
         phone: phoneNumberValue,

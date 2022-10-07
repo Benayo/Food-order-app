@@ -65,7 +65,7 @@ const Login = () => {
     setIsLoading(true);
 
     axios
-      .post("https://foodblogafrika.cyclic.app/api/v1/auth/login", {
+      .post("https://foodblogafrika.herokuapp.com/api/v1/auth/login", {
         email: emailValue,
         password: passwordValue,
       })
