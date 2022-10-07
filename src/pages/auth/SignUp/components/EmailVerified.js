@@ -17,7 +17,7 @@ const EmailVerified = () => {
   useEffect(() => {
     setIsLoading(true);
     axios
-      .post("https://foodblogafrika.herokuapp.com/api/v1/auth/verify", {
+      .post("https://foodblogafrika.cyclic.app/api/v1/auth/verify", {
         email: email,
         verificationToken: verificationToken,
       })

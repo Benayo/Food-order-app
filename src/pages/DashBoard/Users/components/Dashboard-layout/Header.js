@@ -30,7 +30,7 @@ const Header = (props) => {
 
   const changePasswordHandler = () => {
     axios
-      .post("https://foodblogafrika.herokuapp.com/api/v1/auth/forgetpassword", {
+      .post("https://foodblogafrika.cyclic.app/api/v1/auth/resetpassword", {
         email: emailValue,
       })
       .then((res) => {
