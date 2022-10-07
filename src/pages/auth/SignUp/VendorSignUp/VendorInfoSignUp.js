@@ -116,7 +116,7 @@ const VendorInfoSignUp = (props) => {
     <Modal onCancel={props.onCancel}>
       {/* {isLoggedIn && <VerifyEmail />} */}
 
-      <div className=" px-0 py-2">
+      <section className=" max-h-[70vh] px-0 py-2 overflow-scroll">
         <div className="flex justify-between items-baseline">
           <h1 className=" text-xl md:text-2xl font-medium mb-1 md:mb-2">
             👌🏻 You're almost there! {store_name},
@@ -195,7 +195,7 @@ const VendorInfoSignUp = (props) => {
               type="text"
               placeholder="Briefly describe your restuarant"
               cols="30"
-              rows="10"
+              rows="8"
               value={detailsValue}
               onBlur={detailsBlurHandler}
               onChange={detailsChangeHandler}
@@ -217,7 +217,7 @@ const VendorInfoSignUp = (props) => {
             </button>
           </div>
         </form>
-      </div>
+      </section>
     </Modal>
   );
 };
