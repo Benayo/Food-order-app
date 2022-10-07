@@ -33,7 +33,7 @@ const people = [
   // More people...
 ];
 
-const Product = () => {
+const Product = (props) => {
   return (
     <section className={classes.container}>
       <div className={classes.header}>
@@ -106,10 +106,17 @@ const Product = () => {
                       </td>
                       <td className={classes.price}>{person.price}</td>
                       <td className={classes.actions}>
-                        <button className={classes.edit}>Edit</button>
+                        <button onClick={props.onEdit} className={classes.edit}>
+                          Edit
+                        </button>
                       </td>
                       <td className={classes.actions}>
-                        <button className={classes.delete}>Delete</button>
+                        <button
+                          onClick={props.onDelete}
+                          className={classes.delete}
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                   ))}

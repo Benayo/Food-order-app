@@ -39,11 +39,11 @@ const App = () => {
         </Route>
 
         <Route path="/vendor-dashboard">
-          <VendorDashboard />
+          {isLoggedIn ? <VendorDashboard /> : <Redirect to="/auth/login" />}
         </Route>
 
         <Route path="/products/create">
-          <AddProducts />
+          {isLoggedIn ? <AddProducts /> : <Redirect to="/auth/login" />}
         </Route>
 
         <Route path="/forget-password">

@@ -70,6 +70,8 @@ const UserSignUp = () => {
     reset: resetConfirmPassword,
   } = useInput(isPassword);
 
+  const role = "user";
+
   let formIsValid = false;
 
   if (
@@ -121,12 +123,13 @@ const UserSignUp = () => {
     setIsLoading(true);
 
     axios
-      .post("https://foodblogafrika.herokuapp.com/api/v1/auth/register", {
+      .post("https://foodblogafrika.cyclic.app/api/v1/auth/register", {
         email: emailValue,
         password: passwordValue,
         phone: phoneNumberValue,
         first_name: firstNameValue,
         last_name: firstNameValue,
+        role: role,
       })
       .then(function (response) {
         setIsLoading(false);

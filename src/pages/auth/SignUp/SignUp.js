@@ -4,10 +4,14 @@ import classes from "./SignUp.module.css";
 import SignUpNav from "./navigation/SignUpNav";
 import UserSignIn from "./UserSignUp/UserSignUp";
 import VendorSignUp from "./VendorSignUp/VendorSignUp";
+import VendorInfoSignUp from "./VendorSignUp/VendorInfoSignUp";
 
-const SignIn = () => {
+const SignIn = (props) => {
   const [showUserSignIn, setShowUserSignIn] = useState(true);
   const [isActive, setIsActive] = useState(true);
+
+  const [vendorDetails, setVendorDetails] = useState(false);
+  const [vendor, setVendor] = useState();
 
   const toggleUserSignIn = () => {
     setShowUserSignIn(true);
@@ -29,9 +33,24 @@ const SignIn = () => {
     }
   };
 
+  const onAddVendorHandler = (vendorData) => {
+    setVendorDetails(true);
+    setVendor(vendorData);
+  };
+
+  const toggleCloseVendorModal = () => {
+    setVendorDetails(false);
+  };
+
   return (
-    <div>
+    <section>
       <SignUpNav />
+      {vendorDetails && (
+        <VendorInfoSignUp
+          onAddVendor={vendor}
+          onCancel={toggleCloseVendorModal}
+        />
+      )}
       <div className={classes.container}>
         <div className={classes["text__main"]}>Let's get you started</div>
         <div className={classes["text__sub"]}>
@@ -56,9 +75,11 @@ const SignIn = () => {
           </button>
         </div>
         {showUserSignIn && <UserSignIn />}
-        {!showUserSignIn && <VendorSignUp />}
+        {!showUserSignIn && (
+          <VendorSignUp onAddVendorDetails={onAddVendorHandler} />
+        )}
       </div>
-    </div>
+    </section>
   );
 };
 

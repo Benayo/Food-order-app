@@ -8,6 +8,7 @@ import EditProductItem from "./components/EditProductItem";
 import DeleteItem from "./components/DeleteItem";
 import Category from "./components/Category";
 
+
 const AddProducts = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [openDeleteItem, setOpenDeleteItem] = useState(false);

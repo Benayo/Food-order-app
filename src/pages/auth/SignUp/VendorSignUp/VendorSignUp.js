@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import axios from "axios";
 
 import classes from "../SignUp.module.css";
 import useInput from "../../../../hook/use-input";
@@ -10,15 +8,30 @@ const isNotEmpty = (value) => value.trim() !== "";
 const isEmail = (value) => value.includes("@");
 const isPassword = (value) => value.length > 6;
 
-const VendorSignUp = () => {
-  const history = useHistory();
-
+const VendorSignUp = (props) => {
   const [passwordType, setPasswordType] = useState("password");
   const [confirmPasswordType, setConfirmPasswordType] = useState("password");
   const [passwordError, setPasswordError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [httpError, setHttpError] = useState("");
+
+  const {
+    value: firstNameValue,
+    isValid: firstNameIsValid,
+    hasError: firstNameHasError,
+    valueChangeHandler: firstNameChangeHandler,
+    inputBlurHandler: firstNameBlurHandler,
+    reset: resetFirstName,
+  } = useInput(isNotEmpty);
+
+  const {
+    value: lastNameValue,
+    isValid: lastNameIsValid,
+    hasError: lastNameHasError,
+    valueChangeHandler: lastNameChangeHandler,
+    inputBlurHandler: lastNameBlurHandler,
+    reset: resetLastName,
+  } = useInput(isNotEmpty);
 
   const {
     value: restaurantValue,
@@ -65,15 +78,6 @@ const VendorSignUp = () => {
     reset: resetConfirmPassword,
   } = useInput(isPassword);
 
-  const {
-    value: restaurantDetailsValue,
-    isValid: restaurantDetailsIsValid,
-    hasError: restaurantDetailsHasError,
-    valueChangeHandler: restaurantDetailsChangeHandler,
-    inputBlurHandler: restaurantDetailsBlurHandler,
-    reset: resetRestaurantDetails,
-  } = useInput(isNotEmpty);
-
   const toggleCloseNavigationHandler = () => {
     setIsLoggedIn(false);
   };
@@ -106,7 +110,8 @@ const VendorSignUp = () => {
     emailIsValid &&
     passwordIsValid &&
     confirmPasswordIsValid &&
-    restaurantDetailsIsValid
+    firstNameIsValid &&
+    lastNameIsValid
   ) {
     formIsValid = true;
   }
@@ -126,38 +131,63 @@ const VendorSignUp = () => {
 
     setIsLoading(true);
 
-    history.replace("/vendor-dashboard");
 
-    axios
-      .post("https://foodblogafrika.herokuapp.com/api/v1/auth/register", {
-        restaurant_Value: restaurantValue,
-        email: emailValue,
-        password: passwordValue,
-        phone: phoneNumberValue,
-        restuarant_details: restaurantDetailsValue,
-      })
-      .then((response) => {
-        setIsLoading(false);
-        setIsLoggedIn(true);
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        setHttpError(error.response.data.msg);
-      });
 
+    const vendorData = {
+      firstName: firstNameValue,
+      lastName: lastNameValue,
+      restaurantValue: restaurantValue,
+      email: emailValue,
+      password: passwordValue,
+      phone: phoneNumberValue,
+    
+    };
+    setIsLoading(false);
+    props.onAddVendorDetails(vendorData);
+
+    resetFirstName();
+    resetLastName();
     resetRestaurant();
     resetEmail();
     resetPhoneNumber();
     resetPassword();
     resetConfirmPassword();
-    resetRestaurantDetails();
+
   };
 
   return (
     <section>
       {isLoggedIn && <VerifyEmail onCancel={toggleCloseNavigationHandler} />}
-      <div className={classes["http-error-text"]}>{httpError}</div>
+
+      {/* <div className={classes["http-error-text"]}>{httpError}</div> */}
       <form onSubmit={submitHandler}>
+        <div className={classes["input__control"]}>
+          <input
+            className={classes[firstNameHasError ? "invalid" : "input"]}
+            type="text"
+            placeholder="First name"
+            value={firstNameValue}
+            onChange={firstNameChangeHandler}
+            onBlur={firstNameBlurHandler}
+          />
+          {firstNameHasError && (
+            <p className={classes["error-text"]}>First name is required!</p>
+          )}
+        </div>
+        <div className={classes["input__control"]}>
+          <input
+            className={classes[lastNameHasError ? "invalid" : "input"]}
+            type="text"
+            placeholder="Last name"
+            value={lastNameValue}
+            onChange={lastNameChangeHandler}
+            onBlur={lastNameBlurHandler}
+          />
+          {lastNameHasError && (
+            <p className={classes["error-text"]}>Last name is required!</p>
+          )}
+        </div>
+
         <div className={classes["input__control"]}>
           <input
             className={classes[restaurantHasError ? "invalid" : "input"]}
@@ -333,26 +363,6 @@ const VendorSignUp = () => {
           {passwordError && (
             <p className="text-red-600 text-xs inline-block">
               Password do not match
-            </p>
-          )}
-        </div>
-
-     
-
-        <div className={classes["input__control"]}>
-          <textarea
-            className={classes[restaurantDetailsHasError ? "invalid" : "input"]}
-            type="text"
-            placeholder="Briefly describe your restuarant"
-            cols="30"
-            rows="10"
-            value={restaurantDetailsValue}
-            onChange={restaurantDetailsChangeHandler}
-            onBlur={restaurantDetailsBlurHandler}
-          />
-          {restaurantDetailsHasError && (
-            <p className={classes["error-text"]}>
-              Restaurant Details is required!
             </p>
           )}
         </div>
