@@ -80,7 +80,7 @@ const VendorInfoSignUp = (props) => {
     setIsLoading(true);
 
     axios
-      .post("https://foodblogafrika.herokuapp.app/api/v1/auth/register", {
+      .post("https://foodblogafrika.herokuapp.com/api/v1/auth/register", {
         first_name: first_name,
         last_name: last_name,
         email: email,

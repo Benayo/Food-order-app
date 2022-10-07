@@ -47,7 +47,7 @@ const ChangePassword = () => {
 
     setIsLoading(true);
     axios
-      .post("https://foodblogafrika.cyclic.app/api/v1/auth/forgetpassword", {
+      .post("https://foodblogafrika.herokuapp.com/api/v1/auth/forgetpassword", {
         email: enteredNewEmail,
       })
       .then((res) => {

@@ -59,7 +59,7 @@ const ResetUserPassword = () => {
 
     setIsLoading(true);
     axios
-      .post("https://foodblogafrika.herokuapp.app/api/v1/auth/resetnewpassword", {
+      .post("https://foodblogafrika.herokuapp.com/api/v1/auth/resetnewpassword", {
         email: emailValue,
         oldPassword: oldPasswordValue,
         newPassword: enteredNewPassword,
