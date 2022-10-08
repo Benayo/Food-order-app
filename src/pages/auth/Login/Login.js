@@ -81,12 +81,15 @@ const Login = () => {
         setIsLoading(false);
 
         authCtx.login(res.data.access_token);
+      
 
-        // if (storedData.role === "vendor") {
-        //   history.replace("/vendor-dashboard");
-        // }
+        if (storedData.role === "vendor") {
+          history.replace("/vendor-dashboard");
+        } else {
+          history.replace("/user-dashboard");
+        }
 
-        history.replace("/user-dashboard");
+     
       })
 
       .catch((error) => {
