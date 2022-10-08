@@ -76,12 +76,13 @@ const Login = () => {
 
         const storedData = JSON.parse(localStorage.getItem("userData"));
 
-        console.log(storedData);
-
         setIsLoading(false);
 
         authCtx.login(res.data.access_token);
 
+        if (storedData.role === "vendor") {
+          history.replace("/vendor-dashboard");
+        }
         history.replace("/user-dashboard");
       })
 

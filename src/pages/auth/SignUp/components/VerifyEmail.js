@@ -27,10 +27,24 @@ const VerifyEmail = (props) => {
         </div>
 
         <Link
-          className="text-sm md:text-base mt-4 text-blue-800  "
+          className="text-sm md:text-base mt-4 text-blue-800 font-medium"
           to="/auth/login"
         >
-          Go to Login
+          Go to Login{" "}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6 pl-2"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+            />
+          </svg>
         </Link>
       </div>
     </Modal>
