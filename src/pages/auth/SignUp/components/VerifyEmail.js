@@ -27,7 +27,7 @@ const VerifyEmail = (props) => {
         </div>
 
         <Link
-          className="text-sm md:text-base mt-4 text-blue-800 font-medium"
+          className="text-sm md:text-base mt-4 text-blue-800 font-medium flex justify-center items-center"
           to="/auth/login"
         >
           Go to Login{" "}

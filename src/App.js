@@ -18,7 +18,9 @@ const App = () => {
 
   const isLoggedIn = authCtx.isLoggedIn;
 
-  console.log(isLoggedIn);
+  const storedData = JSON.parse(localStorage.getItem("userData"));
+
+  console.log(storedData);
   return (
     <div>
       <Switch>
