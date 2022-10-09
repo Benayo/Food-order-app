@@ -1,134 +1,189 @@
-import React from "react";
-import { useState } from "react";
-// import { DropDownListComponent } from "@syncfusion/ej2-react-dropdowns";
+import axios from "axios";
+import React, { useState } from "react";
 
+import useInput from "../../../hook/use-input";
 import classes from "../AddProducts.module.css";
+import ProductAdded from "./ProductAdded";
+
+const isNotEmpty = (value) => value.trim() !== "";
 
 const AddProductForm = (props) => {
-  const [showCategoryList, setShowCategoryList] = useState(false);
+  // const [showCategoryList, setShowCategoryList] = useState(false);
+  const [imageValue, setImageValue] = useState(null);
+  const [categoryValue, setCategoryValue] = useState(" ");
+  const [isLoading, setIsLoading] = useState(false);
+  const [httpError, setHttpError] = useState("");
+  const [isAdded, setIsAdded] = useState(false);
 
-  const showCategoryDropDownHandler = () => {
-    if (!showCategoryList) {
-      setShowCategoryList(true);
+  const {
+    value: nameValue,
+    isValid: nameIsValid,
+    hasError: nameHasError,
+    valueChangeHandler: nameChangeHandler,
+    inputBlurHandler: nameBlurHandler,
+    reset: resetName,
+  } = useInput(isNotEmpty);
+
+  const {
+    value: priceValue,
+    isValid: priceIsValid,
+    hasError: priceHasError,
+    valueChangeHandler: priceChangeHandler,
+    inputBlurHandler: priceBlurHandler,
+    reset: resetPrice,
+  } = useInput(isNotEmpty);
+
+  const {
+    value: detailsValue,
+    isValid: detailsIsValid,
+    hasError: detailsHasError,
+    valueChangeHandler: detailsChangeHandler,
+    inputBlurHandler: detailsBlurHandler,
+    reset: resetDetails,
+  } = useInput(isNotEmpty);
+
+  const categories = ["one", "two", "three"];
+
+  const categoryChangeHandler = (event) => {
+    setCategoryValue(event.target.value);
+  };
+
+  const imageChangeHandler = (event) => {
+    setImageValue(event.target.files[0]);
+  };
+
+  let formIsValid = false;
+
+  if (nameIsValid && priceIsValid && detailsIsValid) {
+    formIsValid = true;
+  }
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    if (!formIsValid) {
       return;
     }
-    setShowCategoryList(false);
+
+    setIsLoading(true);
+
+    axios
+      .post("https://foodblogafrika.herokuapp.com/api/v1/product", {
+        name: nameValue,
+        price: priceValue,
+        image: imageValue,
+        description: detailsValue,
+        category: categoryValue,
+      })
+      .then((response) => {
+        setIsLoading(false);
+        setIsAdded(true);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        setHttpError(error.response.data.msg);
+      });
+
+    resetName();
+    resetPrice();
+    resetDetails();
   };
 
   return (
-    <form>
-      <div className={classes["input__control"]}>
-        <input
-          className={classes["input"]}
-          type="text"
-          placeholder="Food name"
-        />
-        {<p className={classes["error-text"]}>Food name is required!</p>}
-      </div>
-
-      <div className={classes["input__control"]}>
-        <input
-          className={classes["input"]}
-          type="number"
-          placeholder="Food price"
-        />
-        {<p className={classes["error-text"]}>Food price</p>}
-      </div>
-
-      <div className="mb-[0.2rem] mx-4 lg:mx-[10rem]  xl:mx-[16rem]   cursor-pointer relative">
-        <button
-          onClick={showCategoryDropDownHandler}
-          className="h-full  w-full outline-none bg-gray-200 rounded-md px-4  py-2 flex items-center justify-between cursor-pointer"
-          type="button"
-        >
-          <label className="text-sm text-placeholder  py-1 px-1.25">
-            Select food category
-          </label>
-          {!showCategoryList ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-              />
-            </svg>
-          ) : (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4.5 15.75l7.5-7.5 7.5 7.5"
-              />
-            </svg>
+    <section>
+      {isAdded && <ProductAdded />}
+      {<div className={classes["error-text--1"]}>{httpError}</div>}
+      <form onSubmit={submitHandler}>
+        <div className={classes["input__control"]}>
+          <input
+            className={classes[nameHasError ? "invalid" : "input"]}
+            type="text"
+            placeholder="Food name"
+            value={nameValue}
+            onChange={nameChangeHandler}
+            onBlur={nameBlurHandler}
+          />
+          {nameHasError && (
+            <p className={classes["error-text"]}>Food name is required!</p>
           )}
-        </button>
-        {showCategoryList && (
-          <div className="absolute flex flex-col justify-center items-center  bg-gray-100 w-full   rounded-md  shadow-sm">
-            <div className="pt-3 text-gray-400 text-sm">
-              No category selected
-            </div>
-            <ul className="border-t border-gray-200 w-full flex flex-col justify-center items-center my-3 ">
-              <li className="py-2 cursor-pointer">Beans</li>
-              <div className=" border-b border-gray-200 w-full"></div>
-              <li className="py-2 cursor-pointer">Rice</li>
-              <div className=" border-b border-gray-200 w-full"></div>
-            </ul>
+        </div>
 
-            <button
-              type="button"
-              onClick={props.onCategory}
-              className=" pb-2 text-primary cursor-pointer"
-            >
-              Create category +
+        <div className={classes["input__control"]}>
+          <input
+            className={classes[priceHasError ? "invalid" : "input"]}
+            type="number"
+            placeholder="Food price"
+            value={priceValue}
+            onChange={priceChangeHandler}
+            onBlur={priceBlurHandler}
+          />
+          {priceHasError && (
+            <p className={classes["error-text"]}>Food price is required!</p>
+          )}
+        </div>
+
+        <div className={classes["input__control"]}>
+          <select
+            value={categoryValue}
+            onChange={categoryChangeHandler}
+            className="bg-gray-200 w-full h-12 rounded-md px-3 my-4 "
+          >
+            <option>Choose a category</option>
+            {categories.map((category, index) => {
+              return <option key={index}>{category}</option>;
+            })}
+          </select>
+          <button
+            type="button"
+            onClick={props.onCategory}
+            className=" flex justify-end items-center  w-full text-sm pb-2 text-primary cursor-pointer"
+          >
+            Create category +
+          </button>
+        </div>
+
+        <div className={classes["input__control"]}>
+          <label
+            className="block font-normal text-xs mt-4 mb-0 text-black "
+            htmlFor="image"
+          >
+            Upload image
+          </label>
+          <input
+            id="image"
+            className={classes["input"]}
+            type="file"
+            // value={imageValue}
+            onChange={imageChangeHandler}
+          />
+        </div>
+        <div className={classes["input__control"]}>
+          <textarea
+            className={classes[detailsHasError ? "invalid" : "input"]}
+            cols="20"
+            rows="10"
+            type="number"
+            placeholder="Briefly describe the food item"
+            value={detailsValue}
+            onChange={detailsChangeHandler}
+            onBlur={detailsBlurHandler}
+          />
+          {detailsHasError && (
+            <p className={classes["error-text"]}>Description is required!</p>
+          )}
+
+          <div className="py-4">
+            <div className="text-sm">+10 items Added</div>
+          </div>
+
+          <div className={classes["action--btn"]}>
+            <button className={classes["btn--full"]}>
+              {isLoading ? "Loading..." : "Upload Item"}
             </button>
           </div>
-        )}
-      </div>
-      <div className={classes["input__control"]}>
-        <label
-          className="block font-normal text-xs mt-4 mb-0 text-black "
-          for="image"
-        >
-          Upload image
-        </label>
-        <input id="image" className={classes["input"]} type="file" />
-      </div>
-      <div className={classes["input__control"]}>
-        <textarea
-          className={classes["input"]}
-          cols="20"
-          rows="10"
-          type="number"
-          placeholder="Briefly describe the food item"
-        />
-        {<p className={classes["error-text"]}>Description is required!</p>}
-
-        <div className="py-4">
-          <div className="text-sm">+10 items Added</div>
         </div>
-
-        <div className={classes["action--btn"]}>
-          <button onClick={props.onCancel} className={classes["btn--stroke"]}>
-            {props.stroke}
-          </button>
-          <button className={classes["btn--full"]}>{props.full}</button>
-        </div>
-      </div>
-    </form>
+      </form>
+    </section>
   );
 };
 

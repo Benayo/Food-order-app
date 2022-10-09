@@ -8,11 +8,11 @@ import EditProductItem from "./components/EditProductItem";
 import DeleteItem from "./components/DeleteItem";
 import Category from "./components/Category";
 
-
 const AddProducts = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [openDeleteItem, setOpenDeleteItem] = useState(false);
   const [showCategoryModal, setShowCategoryModal] = useState(false);
+
 
   const toggleOpenModalHandler = () => {
     setShowEditModal(true);
@@ -38,6 +38,7 @@ const AddProducts = () => {
     setShowCategoryModal(false);
   };
 
+  const submitHandler = () => {};
   return (
     <section className={classes.container}>
       <SideBar />
@@ -53,12 +54,14 @@ const AddProducts = () => {
         ></Header>
         <AddProductForm
           onCategory={toggleOpenCategoryHandler}
-          stroke="+Add Item"
+          // stroke="+Add Item"
           full="Upload item"
+          onSubmit={submitHandler}
         />
         <AddProductList
           onDelete={toggleOpenDeleteItemHandler}
           onEdit={toggleOpenModalHandler}
+          onSubmit={submitHandler}
         />
       </div>
     </section>

@@ -99,7 +99,9 @@ const AddProductList = (props) => {
           </div>
         </div>
         <div className="w-full my-8 flex  justify-end  ">
-          <button className={classes["btn--full"]}>Upload items</button>
+          <button onSubmit={props.onSubmit} className={classes["btn--full"]}>
+            Upload items
+          </button>
         </div>
       </div>
     </section>
