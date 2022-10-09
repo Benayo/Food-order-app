@@ -18,6 +18,10 @@ const App = () => {
 
   const isLoggedIn = authCtx.isLoggedIn;
 
+  const role = localStorage.getItem("role");
+
+  console.log(role);
+
   // const storedData = JSON.parse(localStorage.getItem("userData"));
 
   return (
