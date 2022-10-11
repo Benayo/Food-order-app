@@ -81,10 +81,14 @@ const Login = () => {
         setIsLoading(false);
 
         authCtx.login(res.data.access_token);
+        // const { role } = res.data.user;
+        // authCtx.setVendor(role);
 
-     
+        // console.log(role);
 
-      
+        // console.log("ok");
+
+       console.log(storedData.role); 
 
         if (storedData.role === "vendor") {
           history.replace("/vendor-dashboard");
@@ -92,7 +96,6 @@ const Login = () => {
           history.replace("/user-dashboard");
         }
       })
-
       .catch((error) => {
         setIsLoading(false);
         setError(true);

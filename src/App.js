@@ -12,38 +12,51 @@ import AuthContext from "./store/auth-context";
 import UserDashboard from "./pages/DashBoard/Users/UserDashboard";
 import VendorDashboard from "./pages/DashBoard/Vendors/VendorDashboard";
 import AddProducts from "./pages/AddProducts/AddProducts";
+import { useEffect } from "react";
 
 const App = () => {
+  // const [isVendor, setIsVendor] = useState(false);
+
   const authCtx = useContext(AuthContext);
 
   const isLoggedIn = authCtx.isLoggedIn;
 
-  const role = localStorage.getItem("role");
-
-  console.log(role);
-
   // const storedData = JSON.parse(localStorage.getItem("userData"));
+
+  // console.log(isVendor, isLoggedIn);
+
+  // const role = localStorage.getItem("role");
+
+  // if (role === "vendor") {
+  //   setIsVendor(true);
+  // }
+  // console.log(isVendor);
+  // setIsVendor(role == "vendor" ? true : false);
+
+  // console.log(isVendor);
+  // role == "vendor" && setIsVendor(true);
+
+  useEffect(()=>{
+    
+  },[])
 
   return (
     <div>
       <Switch>
         <Route path="/" exact>
-          {!isLoggedIn ? <Homepage /> : <Redirect to="/user-dashboard" />}
+          {!isLoggedIn && <Homepage />}
         </Route>
 
-        <Route path="/auth/login">
-          {!isLoggedIn ? <Login /> : <Redirect to="/dashboard" />}
-        </Route>
+        <Route path="/auth/login">{ <Login />}</Route>
 
-        <Route path="/auth/sign-up">
-          {!isLoggedIn ? <SignUp /> : <Redirect to="/dashboard" />}
-        </Route>
+        <Route path="/auth/sign-up">{!isLoggedIn && <SignUp />}</Route>
 
         <Route path="/user-dashboard">
           {isLoggedIn ? <UserDashboard /> : <Redirect to="/auth/login" />}
         </Route>
 
         <Route path="/vendor-dashboard">
+          {/* <VendorDashboard />  */}
           {isLoggedIn ? <VendorDashboard /> : <Redirect to="/auth/login" />}
         </Route>
 
