@@ -88,9 +88,7 @@ const Login = () => {
 
         // console.log("ok");
 
-       console.log(storedData.role); 
-
-        if (storedData.role === "vendor") {
+        if (storedData.role === '"vendor"') {
           history.replace("/vendor-dashboard");
         } else {
           history.replace("/user-dashboard");

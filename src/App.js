@@ -1,5 +1,5 @@
 import { Switch, Route, Redirect } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import Homepage from "./pages/Homepage/Homepage";
 import Login from "./pages/auth/Login/Login";
@@ -12,65 +12,95 @@ import AuthContext from "./store/auth-context";
 import UserDashboard from "./pages/DashBoard/Users/UserDashboard";
 import VendorDashboard from "./pages/DashBoard/Vendors/VendorDashboard";
 import AddProducts from "./pages/AddProducts/AddProducts";
-import { useEffect } from "react";
 
 const App = () => {
+  // const [isUser, setIsUser] = useState(false);
   // const [isVendor, setIsVendor] = useState(false);
 
   const authCtx = useContext(AuthContext);
 
   const isLoggedIn = authCtx.isLoggedIn;
 
-  // const storedData = JSON.parse(localStorage.getItem("userData"));
+  const role = authCtx.role;
 
-  // console.log(isVendor, isLoggedIn);
-
-  // const role = localStorage.getItem("role");
-
-  // if (role === "vendor") {
-  //   setIsVendor(true);
-  // }
-  // console.log(isVendor);
-  // setIsVendor(role == "vendor" ? true : false);
-
-  // console.log(isVendor);
-  // role == "vendor" && setIsVendor(true);
-
-  useEffect(()=>{
-    
-  },[])
+  if (role === '"user"') {
+    console.log("I am a user");
+  } else if (role === '"vendor"') {
+    console.log("I am a vendor");
+  } else {
+    console.log("I am an imposter");
+  }
 
   return (
     <div>
       <Switch>
         <Route path="/" exact>
-          {!isLoggedIn && <Homepage />}
+          {!isLoggedIn ? (
+            <Homepage />
+          ) : role === '"user"' ? (
+            <Redirect to="/user-dashboard" />
+          ) : (
+            <Redirect to="/vendor-dashboard" />
+          )}
         </Route>
 
-        <Route path="/auth/login">{ <Login />}</Route>
+        <Route path="/auth/login">
+          {!isLoggedIn ? (
+            <Login />
+          ) : role === '"user"' ? (
+            <Redirect to="/user-dashboard" />
+          ) : (
+            <Redirect to="/vendor-dashboard" />
+          )}
+        </Route>
 
-        <Route path="/auth/sign-up">{!isLoggedIn && <SignUp />}</Route>
+        <Route path="/auth/sign-up">
+          {!isLoggedIn ? (
+            <SignUp />
+          ) : role === '"user"' ? (
+            <Redirect to="/user-dashboard" />
+          ) : (
+            <Redirect to="/vendor-dashboard" />
+          )}
+        </Route>
 
         <Route path="/user-dashboard">
-          {isLoggedIn ? <UserDashboard /> : <Redirect to="/auth/login" />}
+          {isLoggedIn && role === '"user"' ? (
+            <UserDashboard />
+          ) : role === '"vendor"' ? (
+            <Redirect to="/vendor-dashboard" />
+          ) : (
+            !isLoggedIn && <Redirect to="/auth/login" />
+          )}
         </Route>
 
-        <Route path="/vendor-dashboard">
-          {/* <VendorDashboard />  */}
-          {isLoggedIn ? <VendorDashboard /> : <Redirect to="/auth/login" />}
+        <Route exact path="/vendor-dashboard">
+          {isLoggedIn && role === '"vendor"' ? (
+            <VendorDashboard />
+          ) : role === '"user"' ? (
+            <Redirect to="/user-dashboard" />
+          ) : (
+            !isLoggedIn && <Redirect to="/auth/login" />
+          )}
         </Route>
 
-        <Route path="/products/create">
-          {isLoggedIn ? <AddProducts /> : <Redirect to="/auth/login" />}
+        <Route exact path="/products/create">
+          {isLoggedIn && role === '"vendor"' ? (
+            <AddProducts />
+          ) : role === '"user"' ? (
+            <Redirect to="/user-dashboard" />
+          ) : (
+            !isLoggedIn && <Redirect to="/auth/login" />
+          )}
         </Route>
 
         <Route path="/forget-password">
           {!isLoggedIn ? <ChangePassword /> : <Redirect to="/auth/login" />}
         </Route>
 
-        <Route path="/resetpassword">
+        {/* <Route path="/resetpassword">
           {isLoggedIn ? <ResetUserPassword /> : <SetNewPassword />}
-        </Route>
+        </Route> */}
 
         <Route path="/verify">
           {!isLoggedIn ? <EmailVerified /> : <Redirect to="/auth/login" />}
