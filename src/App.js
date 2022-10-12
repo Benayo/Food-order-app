@@ -1,5 +1,5 @@
 import { Switch, Route, Redirect } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 import Homepage from "./pages/Homepage/Homepage";
 import Login from "./pages/auth/Login/Login";
@@ -14,22 +14,13 @@ import VendorDashboard from "./pages/DashBoard/Vendors/VendorDashboard";
 import AddProducts from "./pages/AddProducts/AddProducts";
 
 const App = () => {
-  // const [isUser, setIsUser] = useState(false);
-  // const [isVendor, setIsVendor] = useState(false);
-
   const authCtx = useContext(AuthContext);
 
   const isLoggedIn = authCtx.isLoggedIn;
 
   const role = authCtx.role;
 
-  if (role === '"user"') {
-    console.log("I am a user");
-  } else if (role === '"vendor"') {
-    console.log("I am a vendor");
-  } else {
-    console.log("I am an imposter");
-  }
+  console.log(role);
 
   return (
     <div>
@@ -44,7 +35,7 @@ const App = () => {
           )}
         </Route>
 
-        <Route path="/auth/login">
+        <Route exact path="/auth/login">
           {!isLoggedIn ? (
             <Login />
           ) : role === '"user"' ? (
@@ -54,7 +45,7 @@ const App = () => {
           )}
         </Route>
 
-        <Route path="/auth/sign-up">
+        <Route exact path="/auth/sign-up">
           {!isLoggedIn ? (
             <SignUp />
           ) : role === '"user"' ? (
@@ -67,27 +58,27 @@ const App = () => {
         <Route path="/user-dashboard">
           {isLoggedIn && role === '"user"' ? (
             <UserDashboard />
-          ) : role === '"vendor"' ? (
+          ) : isLoggedIn && role === '"vendor"' ? (
             <Redirect to="/vendor-dashboard" />
           ) : (
             !isLoggedIn && <Redirect to="/auth/login" />
           )}
         </Route>
 
-        <Route exact path="/vendor-dashboard">
+        <Route path="/vendor-dashboard">
           {isLoggedIn && role === '"vendor"' ? (
             <VendorDashboard />
-          ) : role === '"user"' ? (
+          ) : isLoggedIn && role === '"user"' ? (
             <Redirect to="/user-dashboard" />
           ) : (
             !isLoggedIn && <Redirect to="/auth/login" />
           )}
         </Route>
 
-        <Route exact path="/products/create">
+        <Route path="/products/create">
           {isLoggedIn && role === '"vendor"' ? (
             <AddProducts />
-          ) : role === '"user"' ? (
+          ) : isLoggedIn && role === '"user"' ? (
             <Redirect to="/user-dashboard" />
           ) : (
             !isLoggedIn && <Redirect to="/auth/login" />
@@ -98,9 +89,9 @@ const App = () => {
           {!isLoggedIn ? <ChangePassword /> : <Redirect to="/auth/login" />}
         </Route>
 
-        {/* <Route path="/resetpassword">
+        <Route path="/resetpassword">
           {isLoggedIn ? <ResetUserPassword /> : <SetNewPassword />}
-        </Route> */}
+        </Route>
 
         <Route path="/verify">
           {!isLoggedIn ? <EmailVerified /> : <Redirect to="/auth/login" />}

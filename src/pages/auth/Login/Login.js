@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useState, useContext } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import useInput from "../../../hook/use-input";
 
@@ -14,7 +14,7 @@ const isEmail = (value) => value.includes("@");
 
 const Login = () => {
   const authCtx = useContext(AuthContext);
-  const history = useHistory();
+  // const history = useHistory();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -76,7 +76,7 @@ const Login = () => {
 
         localStorage.setItem("access", JSON.stringify(res.data.access_token));
 
-        const storedData = JSON.parse(localStorage.getItem("userData"));
+        // const storedData = JSON.parse(localStorage.getItem("userData"));
 
         setIsLoading(false);
 
@@ -88,11 +88,11 @@ const Login = () => {
 
         // console.log("ok");
 
-        if (storedData.role === '"vendor"') {
-          history.replace("/vendor-dashboard");
-        } else {
-          history.replace("/user-dashboard");
-        }
+        // if (storedData.role === '"vendor"') {
+        //   history.replace("/vendor-dashboard");
+        // } else if (storedData.role === '"else"') {
+        //   history.replace("/user-dashboard");
+        // }
       })
       .catch((error) => {
         setIsLoading(false);

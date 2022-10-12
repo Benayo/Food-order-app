@@ -11,7 +11,6 @@ const AuthContext = React.createContext({
 
 export const AuthContextProvider = (props) => {
   const [token, setToken] = useState(null);
-  
 
   const loginHandler = useCallback((token) => {
     setToken(token);
@@ -35,6 +34,7 @@ export const AuthContextProvider = (props) => {
     if (storedAccess) {
       setToken(storedAccess);
     }
+
 
   }, []);
 
