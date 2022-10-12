@@ -32,7 +32,7 @@ export const AuthContextProvider = (props) => {
     const storedAccess = localStorage.getItem("access");
 
     if (storedAccess) {
-      setToken(Boolean(storedAccess));
+      setToken(storedAccess);
     }
   }, []);
 
