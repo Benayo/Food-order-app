@@ -32,10 +32,8 @@ export const AuthContextProvider = (props) => {
     const storedAccess = localStorage.getItem("access");
 
     if (storedAccess) {
-      setToken(storedAccess);
+      setToken(Boolean(storedAccess));
     }
-
-
   }, []);
 
   const contextValue = {
