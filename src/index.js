@@ -8,10 +8,11 @@ import App from "./App";
 import { AuthContextProvider } from "./store/auth-context";
 
 if (process.env.NODE_ENV === "production") {
-disableReactDevTools();
+  disableReactDevTools();
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <AuthContextProvider>
     <BrowserRouter>
