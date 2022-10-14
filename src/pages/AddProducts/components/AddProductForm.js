@@ -1,7 +1,8 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import useInput from "../../../hook/use-input";
+import AuthContext from "../../../store/auth-context";
 import classes from "../AddProducts.module.css";
 import ProductAdded from "./ProductAdded";
 
@@ -14,6 +15,10 @@ const AddProductForm = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [httpError, setHttpError] = useState("");
   const [isAdded, setIsAdded] = useState(false);
+
+  const authCtx = useContext(AuthContext);
+
+  const token = authCtx.token;
 
   const {
     value: nameValue,
@@ -67,14 +72,43 @@ const AddProductForm = (props) => {
 
     setIsLoading(true);
 
+    // axios
+    //   .post("https://foodblogafrika.herokuapp.com/api/v1/product", {
+    //     token: token,
+    //     name: nameValue,
+    //     price: priceValue,
+    //     image: imageValue,
+    //     description: detailsValue,
+    //     category: categoryValue,
+    //   })
+    //   .then((response) => {
+    //     setIsLoading(false);
+    //     setIsAdded(true);
+    //   })
+    //   .catch((error) => {
+    //     setIsLoading(false);
+    //     setHttpError(error.response.data.msg);
+    //   });
+
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+
+    const bodyParameters = {
+      // key: "value",
+      name: nameValue,
+      price: priceValue,
+      image: imageValue,
+      description: detailsValue,
+      category: categoryValue,
+    };
+
     axios
-      .post("https://foodblogafrika.herokuapp.com/api/v1/product", {
-        name: nameValue,
-        price: priceValue,
-        image: imageValue,
-        description: detailsValue,
-        category: categoryValue,
-      })
+      .post(
+        "https://foodblogafrika.herokuapp.com/api/v1/product",
+        bodyParameters,
+        config
+      )
       .then((response) => {
         setIsLoading(false);
         setIsAdded(true);
@@ -82,11 +116,12 @@ const AddProductForm = (props) => {
       .catch((error) => {
         setIsLoading(false);
         setHttpError(error.response.data.msg);
+        console.log(httpError);
       });
 
-    resetName();
-    resetPrice();
-    resetDetails();
+    // resetName();
+    // resetPrice();
+    // resetDetails();
   };
 
   return (
