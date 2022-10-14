@@ -54,7 +54,7 @@ const AddProductForm = (props) => {
   };
 
   const imageChangeHandler = (event) => {
-    setImageValue(event.target.files[0]);
+    setImageValue(event.target.files);
   };
 
   let formIsValid = false;
