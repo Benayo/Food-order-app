@@ -177,7 +177,7 @@ const AddProductForm = (props) => {
           </button>
         </div>
 
-        {/* <div className={classes["input__control"]}>
+        <div className={classes["input__control"]}>
           <label
             className="block font-normal text-xs mt-4 mb-0 text-black "
             htmlFor="image"
@@ -191,7 +191,7 @@ const AddProductForm = (props) => {
             // value={imageValue}
             onChange={imageChangeHandler}
           />
-        </div> */}
+        </div>
         <div className={classes["input__control"]}>
           <textarea
             className={classes[detailsHasError ? "invalid" : "input"]}
